@@ -1,0 +1,126 @@
+<div class="backgorud">
+    <div class="container">
+        <div class="text-center py-5">
+            <h1 style="color: white;">Registar Empresa</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <div class="card" style="min-height: 25.5rem;">
+                    <div class="card-body">
+                        <form [formGroup]="companyEditorForm">
+                            <div class="form-group py-2">
+                                <input type="text" class="form-control" placeholder="Nombre Empresa(Corto)"
+                                    formControlName="companyShortName">
+                                <div *ngIf="companyShortName.invalid && (companyShortName.dirty || companyShortName.touched)"
+                                    class="alert text-danger">
+                                    <div *ngIf="companyShortName.errors.required">
+                                        El nombre de la empresa (corto) es requerido.
+                                    </div>
+                                    <div *ngIf="companyShortName.errors.maxlength">
+                                        El nombre debe tener máximo 100 caracteres.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="text" class="form-control" placeholder="Nombre Empresa(Largo)"
+                                    formControlName="longCompanyName">
+                                <div *ngIf="longCompanyName.invalid && (longCompanyName.dirty || longCompanyName.touched)"
+                                    class="alert text-danger">
+                                    <div *ngIf="longCompanyName.errors.required">
+                                        El nombre de la empresa (largo) es requerido.
+                                    </div>
+                                    <div *ngIf="longCompanyName.errors.maxlength">
+                                        El nombre debe tener máximo 100 caracteres.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="text" class="form-control" placeholder="Tipo de Sociedad"
+                                    formControlName="kindOfSociety">
+                                <div *ngIf="kindOfSociety.invalid && (kindOfSociety.dirty || kindOfSociety.touched)"
+                                    class="alert text-danger">
+                                    <div *ngIf="kindOfSociety.errors.required">
+                                        El tipo de sociedad es requerido
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row py-2">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                    <button class="add-member">
+                                        <fa-icon [icon]="faPlus" class="icon-size"></fa-icon> Añadir miembro
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row py-3 px-3">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn-cancel">
+                                Cancelar
+                            </button>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <button type="submit"
+                                [ngStyle]="{'background-color': companyEditorForm.valid ? '#f0a500' : '#FCCA5E'}"
+                                [disabled]="!companyEditorForm.valid" class="btn-register">
+                                Registrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="py-2">
+                                <input type="text" #searchMember class="form-control" placeholder="Buscar miembros">
+                            </div>
+                            <div class="py-2" style="height:20rem; overflow:auto;">
+                                <table class="default">
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                    <tr class="py-2">
+                                        <div><strong>Amilcar Llanque</strong></div>
+                                        <div>amilcarllanque@gmail.com</div>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
