@@ -4,15 +4,30 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <h1>Registar Usuario</h1>
+                <h1>Empresa TIS</h1>
                 <div class="card">
                     <div class="card-body">
-                        <input type="text" placeholder="nombre">
+                        <h2>Iniciar Sesion</h2>
+                        <div>
+                            <input type="text" placeholder="Correo Institucional">
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Contraseña">
+                        </div>
+                        
+                        
+                        <div>
+                            <a [routerLink]="['/register-user']" class="btn btn-oran">Ingresar</a>
+                        </div>
+                        <div>
+                            <a [routerLink]="['/register-user']" class="btn btn-blue">Regsitrarse</a>
+                        </div>
+                        
+
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <a [routerLink]="['/register-user']">Registrar Usuario</a>
             </div>
         </div>      
     </div>
