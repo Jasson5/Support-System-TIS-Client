@@ -3,25 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
 import { CompanyModule } from './company/company.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterUserComponent
+    HomeComponent,
+    HeaderComponent,
+    LanfingPageComponent,
   ],
   imports: [
     CommonModule,
-    
+    AuthenticationModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,    

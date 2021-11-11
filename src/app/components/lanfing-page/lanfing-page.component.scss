@@ -1,0 +1,38 @@
+.backgorud-image {
+    background-image: url(/assets/images/font.jpeg);
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo {
+    background-image: url(/assets/images/logo.png);   
+    width: 100%;
+    height: 4rem;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+}
+
+.btn-login{
+    background-color: #f0a500;
+    font-weight: bold;
+    color: white;
+    margin-right: 2rem;
+    border-radius: 2rem;
+    width: 10rem;
+    height: 3rem;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.btn-register{    
+    border-color: #f0a500;
+    font-weight: bold;
+    color: #f0a500;
+    border-radius: 2rem;
+    border-radius: 2rem;
+    width: 10rem;
+    height: 3rem;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
