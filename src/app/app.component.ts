@@ -18,4 +18,15 @@ export class AppComponent {
       window.scrollTo(0, 0)
     });
   }
+
+  isInformationRoute() {
+    var homeRoute;
+    if (this.router.url == '/') {
+      homeRoute = false;
+    }
+    else {
+      homeRoute = true;
+    }
+    return homeRoute;
+  }
 }
