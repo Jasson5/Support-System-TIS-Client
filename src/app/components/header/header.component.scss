@@ -1,0 +1,56 @@
+.background {
+    background-color: #273642;
+    height: 10vh;
+    color: white;
+}
+
+.background-2 {
+    height: 10vh;
+    color: white;
+}
+
+.logo {
+    background-image: url(/assets/images/logo.png);   
+    width: 100%;
+    height: 4rem;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+}
+
+.view-user-details {
+    background-color: #273642;
+    border: none;
+    color: #868e94;
+    font-size: 2.2rem;
+    border: 3px #868e94 solid;
+    border-radius: 5rem;
+    width: 4rem;
+}
+
+.redirect {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #273642;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-option:hover{
+    background-color: #334756;
+}
