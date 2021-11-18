@@ -1,4 +1,5 @@
-import { Company } from "./company";
+
+import { Company } from "src/app/models/company";
 import { Role } from "./role";
 
 export class User {
