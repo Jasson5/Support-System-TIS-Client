@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 import { UserDatastoreService } from './services/user-datastore.service';
 import { UserService } from './services/user.service';
 import { JwtDecodeService } from './services/jwt-decode.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,6 +22,7 @@ import { JwtDecodeService } from './services/jwt-decode.service';
       FormsModule,
       RouterModule,
       ReactiveFormsModule,
+      HttpClientModule
     ],
     providers: [
       AuthGuardService,
