@@ -6,11 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewPendingCompaniesComponent } from './components/view-pending-companies/view-pending-companies.component';
 
 
 
 @NgModule({
-  declarations: [AddCompanyComponent, ViewCompaniesComponent],
+  declarations: [AddCompanyComponent, ViewCompaniesComponent, ViewPendingCompaniesComponent],
   imports: [
     HttpClientModule,
     CommonModule,
