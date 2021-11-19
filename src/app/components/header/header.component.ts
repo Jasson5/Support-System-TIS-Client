@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   public userName = "Juan";
   public userRole = "Administrador";
-  public campanyName = "Mi Empresa";
+  public campanyName = "Empresas";
   faUser = faUser;
   constructor(public router: Router) { }
 

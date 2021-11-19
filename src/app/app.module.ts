@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompanyModule } from './company/company.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +29,7 @@ import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.com
     BrowserModule,
     FormsModule,    
     CompanyModule,
+    ReactiveFormsModule,
     NgxSpinnerModule,
     FontAwesomeModule,
     NgbModule,

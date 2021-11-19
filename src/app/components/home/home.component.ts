@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';;
 
 
 @Component({
@@ -11,6 +11,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class HomeComponent implements OnInit {
 
+  public viewButonForOptions = true;
+  public viewOptions = false;
+  public viewAnnouncements = false;
+  public viewAdvertisements = false;
+  public AdvertisementsStatus;
+  public AnnouncementsStatus;
   public companEditorForm: FormGroup;
   
   constructor(
@@ -22,7 +28,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.buildFormAnnouncement();
   }
-
+  
   buildFormAnnouncement() {
     this.companEditorForm = this.formBuilder.group({
       titleAnnouncement: ['', [Validators.required, Validators.maxLength(50)]],
@@ -49,4 +55,41 @@ export class HomeComponent implements OnInit {
     return this.companEditorForm.get('maxPartnerAnnouncement');
   }
 
+  changeViewOptions(){
+    if(this.viewOptions == false){
+      this.viewOptions = true;
+      this.viewButonForOptions = false;
+    }else{
+      this.viewOptions = false;
+      this.viewButonForOptions = true;
+    }
+  }
+
+  onItemChange(viewAnnouncementsStatus, viewAdvertisementsStatus){
+    this.AnnouncementsStatus = viewAnnouncementsStatus;
+    this.AdvertisementsStatus = viewAdvertisementsStatus;    
+  }
+
+  changeViewAnnouncementssOrAdvertisements(){
+    if(this.AnnouncementsStatus == true){
+      this.viewAnnouncements = true;
+      this.viewOptions = false;
+      this.viewButonForOptions = false;
+    }
+    if(this.AdvertisementsStatus == true){
+      this.viewAdvertisements = true;
+      this.viewOptions = false;
+      this.viewButonForOptions = false;
+    }
+  }
+  
+  cancelAnnouncement(){    
+    this.viewAnnouncements = false;
+    this.viewOptions = true;
+  }
+  
+  cancelAdvertisement(){    
+    this.viewAdvertisements = false;
+    this.viewOptions = true;
+  }
 }
