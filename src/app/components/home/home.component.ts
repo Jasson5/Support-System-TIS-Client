@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';;
+import { NgxSpinnerService } from 'ngx-spinner';import { AnnouncementService } from 'src/app/announcement/services/announcement.service';
+ import { Announcement } from 'src/app/models/announcement';
+import { Offer } from 'src/app/models/offer';
+import { UploadService } from 'src/app/services/upload.service';
+;
 
 
 @Component({
@@ -17,78 +21,69 @@ export class HomeComponent implements OnInit {
   public viewAdvertisements = false;
   public AdvertisementsStatus;
   public AnnouncementsStatus;
-  public companEditorForm: FormGroup;
-  
+  public announcementEditorForm: FormGroup;
+  public folderName: string = "announcements";
+  public thumbnail = null;
+  public thumbnailData = null;
+  public imageErrorSize = null;
+  public file;
+  private FILE_MAX_SIZE = 50000000;
+  public pannouncementToEdit: Announcement;
+  public offers: Offer[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private cd: ChangeDetectorRef,
+    private uploadService: UploadService,
+    private spinner: NgxSpinnerService,
+    private announcementService: AnnouncementService
   ) { }
 
   ngOnInit(): void {
-    this.buildFormAnnouncement();
-  }
-  
-  buildFormAnnouncement() {
-    this.companEditorForm = this.formBuilder.group({
-      titleAnnouncement: ['', [Validators.required, Validators.maxLength(50)]],
-      descriptionAnnouncement: ['', [Validators.required, Validators.maxLength(500)]],
-      filesAnnouncement:['',[Validators.required]],
-      minPartnerAnnouncement:['',[Validators.required]],
-      maxPartnerAnnouncement:['',[Validators.required]]
+    this.announcementService.listOffers().subscribe(offers => {
+      this.offers = offers;
     });
   }
-  get titleAnnouncement() {
-    return this.companEditorForm.get('titleAnnouncement');
-  }
- 
-  get descriptionAnnouncement() {
-    return this.companEditorForm.get('descriptionAnnouncement');
-  }
-  get filesAnnouncement() {
-    return this.companEditorForm.get('filesAnnouncement');
-  }
-  get minPartnerAnnouncement() {
-    return this.companEditorForm.get('minPartnerAnnouncement');
-  }
-  get maxPartnerAnnouncement() {
-    return this.companEditorForm.get('maxPartnerAnnouncement');
-  }
-
-  changeViewOptions(){
-    if(this.viewOptions == false){
+  
+  goToLink(url: string){
+    window.open(url, "_blank");
+}
+  
+  changeViewOptions() {
+    if (this.viewOptions == false) {
       this.viewOptions = true;
       this.viewButonForOptions = false;
-    }else{
+    } else {
       this.viewOptions = false;
       this.viewButonForOptions = true;
     }
   }
 
-  onItemChange(viewAnnouncementsStatus, viewAdvertisementsStatus){
+  onItemChange(viewAnnouncementsStatus, viewAdvertisementsStatus) {
     this.AnnouncementsStatus = viewAnnouncementsStatus;
-    this.AdvertisementsStatus = viewAdvertisementsStatus;    
+    this.AdvertisementsStatus = viewAdvertisementsStatus;
   }
 
-  changeViewAnnouncementssOrAdvertisements(){
-    if(this.AnnouncementsStatus == true){
+  changeViewAnnouncementssOrAdvertisements() {
+    if (this.AnnouncementsStatus == true) {
       this.viewAnnouncements = true;
       this.viewOptions = false;
       this.viewButonForOptions = false;
     }
-    if(this.AdvertisementsStatus == true){
+    if (this.AdvertisementsStatus == true) {
       this.viewAdvertisements = true;
       this.viewOptions = false;
       this.viewButonForOptions = false;
     }
   }
-  
-  cancelAnnouncement(){    
+
+  cancelAnnouncement() {
     this.viewAnnouncements = false;
     this.viewOptions = true;
   }
-  
-  cancelAdvertisement(){    
+
+  cancelAdvertisement() {
     this.viewAdvertisements = false;
     this.viewOptions = true;
   }

@@ -11,19 +11,19 @@ export class CompanyService {
 
   public addCompany(company, users) {
     let newCompany= new Company();
-    newCompany.name = company.name;
-    newCompany.phone = company.phone;
-    newCompany.email = company.email;
-    newCompany.adress = company.adress;
+    // newCompany.name = company.name;
+    // newCompany.phone = company.phone;
+    // newCompany.email = company.email;
+    // newCompany.adress = company.adress;
 
     return this.companyDatastoreService.add(newCompany);
   }
 
   public updateCompany(companyToEdit: Company, company) {
-    companyToEdit.name = company.name;
-    companyToEdit.phone = company.phone;
-    companyToEdit.email = company.email;
-    companyToEdit.adress = company.adress;
+    // companyToEdit.name = company.name;
+    // companyToEdit.phone = company.phone;
+    // companyToEdit.email = company.email;
+    // companyToEdit.adress = company.adress;
 
     return this.companyDatastoreService.update(companyToEdit);
   }

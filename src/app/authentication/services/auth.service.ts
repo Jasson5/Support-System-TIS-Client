@@ -22,58 +22,52 @@ export class AuthService {
     return token != null;
   }
 
-  // login(username: string, password: string) {
-  //   var user = new User();
+  login(username: string, password: string) {
+    var user = new User();
 
-  //   //@ts-ignore
-  //   user.id = 0;
-  //   user.username = username;
-  //   user.password = password;
-  //   user.firstName = username;
-  //   user.lastName = username;
-  //   user.confirmPassword = password;
+    //@ts-ignore
+    user.id = 0;
+    user.username = username;
+    user.password = password;
 
-  //   const reqHeader = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    const reqHeader = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-  //   return this.http.post<any>(environment.BACK_END_HOST + 'users/authenticate', user, reqHeader)
-  //     .pipe(
-  //       map(user => {
-  //         localStorage.setItem('token', user.token);
-  //         localStorage.setItem('username', user.username);
-  //         localStorage.setItem('roles', this.jwtDecodeService.decodeToken(user.token)['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
-  //         localStorage.setItem('userid', this.jwtDecodeService.decodeToken(user.token)['user_id']);
-  //         localStorage.setItem('expires', this.jwtDecodeService.decodeToken(user.token)['exp']);
+    return this.http.post<any>(environment.BACK_END_HOST + 'accounts/api-auth/', user, reqHeader)
+      .pipe(
+        map(user => {
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('username', user.username);
+          localStorage.setItem('email', user.email);
+          // localStorage.setItem('roles', this.jwtDecodeService.decodeToken(user.token)['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
+          // localStorage.setItem('userid', this.jwtDecodeService.decodeToken(user.token)['user_id']);
+          // localStorage.setItem('expires', this.jwtDecodeService.decodeToken(user.token)['exp']);
 
-  //         if (this.getRoles().includes('Admin')) {
-  //           return true;
-  //         } else {
-  //           return false;
-  //         }
-  //       })
-  //     );
-  // }
+          return true;
+        })
+      );
+  }
 
-  // getToken() {
-  //   return localStorage.getItem('token');
-  // }
+  getToken() {
+    return localStorage.getItem('token');
+  }
 
-  // getUsername() {
-  //   return localStorage.getItem('username');
-  // }
+  getUsername() {
+    return localStorage.getItem('username');
+  }
 
-  // getUserId() {
-  //   return localStorage.getItem('userid');
-  // }
+  getUserId() {
+    return localStorage.getItem('userid');
+  }
 
-  // getRoles() {
-  //   var roles = localStorage.getItem('roles');
-  //   if (roles) {
-  //     return roles.split(',');
-  //   }
-  //   else {
-  //     return [];
-  //   }
-  // }
+  getRoles() {
+    var roles = localStorage.getItem('roles');
+    if (roles) {
+      return roles.split(',');
+    }
+    else {
+      return [];
+    }
+  }
 
   tokenHasExpired() {
     var convertDate = parseInt(localStorage.getItem('expires')) * 1000;

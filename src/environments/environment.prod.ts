@@ -1,13 +1,11 @@
 export const environment = {
   production: true,
-  BACK_END_HOST: 'https://localhost:44395/api',
-  ACCES_KEY_ID: 'AKIAUJM5HXIVOFJHIDF2',
-  SECRET_ACCESS_KEY: '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',
-  REGION: 'sa-east-1',
-  BUCKET_NAME: 'jabusoft-dev-test-bucket',
-  ROLES: 'Admin,Billing,Basic',
-  API_KEY: 'AIzaSyBEJ-2v7ewQyGscnXbsKv1y7jMn5qKm64E',
-  COMPANY_NAME: 'JABUSOFT',
-  SERVERLESS_DEPLOY: true,
+  BACK_END_HOST: 'https://empresatis2021.herokuapp.com/',
+  ACCES_KEY_ID: 'PLWIAX4TEUVTUP43VQRG',
+  SECRET_ACCESS_KEY: 'rKK0JTmHIx9jZtBBYPvoeWmUqvpcfiI82ZwyfVfF7uc',
+  REGION: 'nyc3',
+  S3_ENDPOINT: 'nyc3.digitaloceanspaces.com',
+  BUCKET_NAME: 'docforsis-client',
+  ROLES: 'Admin,Student',
   LOGO_URL: '../assets/images/logo-in-black.png'
 };
