@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,9 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
+import { AnnouncementModule } from './announcement/announcement.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnnouncementEditorComponent } from './announcement/announcement-editor/announcement-editor.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +32,17 @@ import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.com
     BrowserModule,
     FormsModule,    
     CompanyModule,
+    AnnouncementModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
     FontAwesomeModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [],  
+  entryComponents: [AnnouncementEditorComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

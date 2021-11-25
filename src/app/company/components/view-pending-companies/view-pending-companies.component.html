@@ -12,10 +12,10 @@
                     <th><strong>Aprobar</strong></th>
                     <th><strong>Rechazar</strong></th>
                 </tr>
-                <tr>
-                    <td> A&D</td>
-                    <td> A&D</td>
-                    <td> A&D</td>
+                <tr *ngFor="let company of companies">
+                    <td>{{ company.shortName}}</td>
+                    <td>{{ company.longName}}</td>
+                    <td>{{ company.society}}</td>
                     <td> 
                         <button class="view-details">
                             <fa-icon [icon]="faCheck" class="icon-size"></fa-icon>
@@ -26,22 +26,7 @@
                             <fa-icon [icon]="faTimes" class="icon-size"></fa-icon>
                         </button>
                     </td>
-                </tr>
-                <tr>
-                    <td> A&D</td>
-                    <td> A&D</td>
-                    <td> A&D</td>
-                    <td> 
-                        <button class="view-details">
-                            <fa-icon [icon]="faCheck" class="icon-size"></fa-icon>
-                        </button>
-                    </td>
-                    <td> 
-                        <button class="view-details">
-                            <fa-icon [icon]="faTimes" class="icon-size"></fa-icon>
-                        </button>
-                    </td>
-                </tr>                   
+                </tr>                         
             </table>
         </div>
     </div>

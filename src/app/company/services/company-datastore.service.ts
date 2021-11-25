@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CompanyDatastoreService {
-  readonly ROOT_URL = `${environment.BACK_END_HOST}brands`;
+  readonly ROOT_URL = `${environment.BACK_END_HOST}api/1.0/company/`;
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +24,6 @@ export class CompanyDatastoreService {
   }
 
   findById(id) {
-    return this.http.get<Company>(this.ROOT_URL + '/' + id);
+    return this.http.get<Company>(this.ROOT_URL + id);
   }
 }

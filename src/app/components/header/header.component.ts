@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/authentication/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,10 @@ export class HeaderComponent implements OnInit {
   public userRole = "Administrador";
   public campanyName = "Empresas";
   faUser = faUser;
-  constructor(public router: Router) { }
+  constructor(
+    public router: Router,
+    private auth: AuthService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -27,5 +31,10 @@ export class HeaderComponent implements OnInit {
       homeRoute = true;
     }
     return homeRoute;
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
 }
