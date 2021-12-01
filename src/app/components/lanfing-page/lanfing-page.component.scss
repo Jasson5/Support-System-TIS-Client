@@ -1,7 +1,44 @@
+
 .backgorud-image {
     background-image: url(/assets/images/font.jpeg);
     width: 100vw;
     height: 100vh;
+}
+
+h1,
+h2,
+h3,
+
+p{
+    font-family: 'Raleway', sans-serif;
+}
+h1{
+    font-weight: 800;
+}
+h2{
+    font-weight: 600;
+    font-size: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+h3{
+    font-weight: 600;
+}
+
+p{
+    text-align: justify;
+    font-size: 1rem;
+}
+
+.subtitle{
+    color: white; 
+    font-size: 2rem;
+    text-align: left;
+}
+.tri {
+    color: #f0a500;
+    font-size: 5rem;
+    padding-left: 50%;
 }
 
 .btn-login{
@@ -26,4 +63,49 @@
     height: 3rem;
     margin-top: 2rem;
     font-size: 1.5rem;
+}
+
+.white-back{
+    background-image: url(/assets/images/white-font.png);
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.section-def,
+.global-plan,
+.tis-admins,
+.clss-schedule{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.head-table{
+    background-color: orange;
+}
+.card{
+    margin: 2rem;
+}
+.long-text{
+    margin: 3rem;
+    text-align: justify;
+}
+
+.card-img{
+    padding-top: 2rem;
+    padding-left: 1rem;
+}
+.card-title{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+.table{
+    font-family: 'Raleway',sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
 }

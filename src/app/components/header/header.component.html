@@ -1,15 +1,17 @@
-<div class="background" *ngIf="isInformationRoute()==true">
+<!--
+    Header-admin
+-->
+<div class="background" *ngIf="isInformationRoute() == false">
+    
     <div class="container">
         <div class="row">
-            <div class="col-md-5" style="padding-top: 1vh;">
+            <div class="col-md-3 home-title">
                 <div class="row">
-                    <div class="col-md-8">
-                        <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
-                    </div>
-                    <div class="col-md-4" style="text-align: center; font-size: 1.5rem; padding-top: 0.5vh;">
-                        <div class="redirect" [routerLink]="['/view-pending-companies']">Solicitudes</div>
-                    </div>
+                    <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
                 </div>
+            </div>
+            <div class="col-md-2 header-titles">
+                <div class="redirect" [routerLink]="['/view-pending-companies']">Solicitudes</div>
             </div>
             <div class="col-md-2 header-titles">
                 <div class="redirect" >{{campanyName}}</div>
@@ -19,11 +21,11 @@
             </div>
             <div class="col-md-3">
                 <div class="row">
-                    <div class="col-md-8" style="text-align: center; font-size: 1.2rem;">
+                    <div class="col-md-8" style="text-align: center; font-size: 1.2rem; padding-top: 1.5vh;">
                         <div>{{userName}}</div>
                         <div>{{userRole}}</div>
                     </div>
-                    <div class="col-md-4 text-center dropdown" style="padding-top: 0.7vh;">
+                    <div class="col-md-4 icon-logo text-center dropdown">
                         <button class="view-user-details">
                             <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
                         </button>
@@ -36,25 +38,119 @@
         </div>
     </div>
 </div>
-<div class="background-2" *ngIf="isInformationRoute()==false">
+
+<!--
+    Header-Initial-student
+-->
+
+<div class="background"  *ngIf="false">
+    
     <div class="container">
         <div class="row">
+            <div class="col-md-5 home-title">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 header-titles">
+                
+            </div>
+            <div class="col-md-2 header-titles">
+                <div class="redirect" [routerLink]="['/view-companies']">Lista de Empresas</div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-8 header-titles">
+                        <div>{{userName}}</div>
+                    </div>
+                    <div class="col-md-4 icon-logo text-center dropdown">
+                        <button class="view-user-details">
+                            <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
+                        </button>
+                        <div class="dropdown-content">
+                            <div class="redirect dropdown-option" (click)="logout()">Cerrar Sesion</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+    Header-role-student
+-->
+
+<div class="background"  *ngIf="false">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 home-title">
+                <div class="row">
+                    <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
+                </div>
+            </div>
+            <div class="col-md-2 header-titles">
+                <div class="redirect" >Mi Empresa</div>
+            </div>
+            <div class="col-md-2 header-titles">
+                <div class="redirect" [routerLink]="['/view-companies']">Lista de Empresas</div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-8" style="text-align: center; font-size: 1.2rem; padding-top: 1.5vh;">
+                        <div>{{userName}}</div>
+                        <div>{{userRole}}</div>
+                    </div>
+                    <div class="col-md-4 icon-logo text-center dropdown">
+                        <button class="view-user-details">
+                            <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
+                        </button>
+                        <div class="dropdown-content">
+                            <div class="redirect dropdown-option" (click)="logout()">Cerrar Sesion</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+    Header-landing-page
+-->
+
+<div class="fixed-top background-2"  *ngIf="isInformationRoute() == true">
+    
+    <div class="container">
+        
+        <div class="row">
+        
+            
             <div class="col-md-2">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" [routerLink]="['/']" style="padding-top: 1.5vh;">
                         <div class="logo" style="cursor: pointer;"></div>
                     </div>
-                    <div class="col-md-6" style="color: #f0a500; font-size: 2.5rem;cursor: pointer;">
+                    <div class="col-md-6" [routerLink]="['/']" style="color: #f0a500; font-size: 2.5rem;cursor: pointer;">
                         T.I.S.
                     </div>
                 </div>
             </div>
             <div class="col-md-3"></div>
             <div class="col-md-7">
-                <div class="row text-center" style="color: white; font-size: 2.5rem;">
-                    <div class="col-md-4" style="cursor: pointer;">Plan Global</div>
-                    <div class="col-md-4" style="cursor: pointer;">Docentes</div>
-                    <div class="col-md-4" style="cursor: pointer;">Horarios</div>
+                <div class="row text-center" style="color: white; font-size: 2.5rem; padding-top: 1.5vh;">
+                    <div class="col-md-4" style="cursor: pointer;">
+                        <h1 class="redirect" [routerLink]="['/#glo-plan']">PLan Global</h1>
+                    </div>
+                    <div class="col-md-4" style="cursor: pointer;">
+                        <h1 class="redirect" [routerLink]="['']" fragment="doc">Docentes</h1>
+                    </div>
+                    <div class="col-md-4" style="cursor: pointer;">
+                        <h1 class="redirect" [routerLink]="['']"fragment="schedules">Horarios</h1>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, HostListener, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  animations:[
+    trigger('fade',[
+      state('void', style({ opacity : 0})),
+      transition(':enter',[ animate(300)]),
+      transition(':leave',[ animate(500)]),
+    ]
+    )]
 })
 export class HeaderComponent implements OnInit {
 
+  @ViewChild('stickyMenu') menuElement: ElementRef;
   public userName = "Juan";
   public userRole = "Administrador";
   public campanyName = "Empresas";
@@ -21,14 +31,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   isInformationRoute() {
     var homeRoute;
-    if (this.router.url == '/') {
-      homeRoute = false;
-    }
-    else {
+    var route = this.router.url
+    if (route == '/' || route== '/#glo-plan' || route == '/#doc' || route == '/#schedules' || route == '/#sec-def') {
       homeRoute = true;
+    }else{
+      homeRoute = false;
     }
     return homeRoute;
   }
@@ -37,4 +47,6 @@ export class HeaderComponent implements OnInit {
     this.auth.logout();
     this.router.navigate(['/']);
   }
+
+  
 }

@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="container">
+    <h2>Estudiantes Inscritos</h2>
+        
+        <div class="row">
+            <table class="table">
+                <thead class="head-table">
+                    <tr>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Correo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of estudiante; index as i">
+                        <th scope="row">{{i+1}}</th>
+                        <td>
+                            {{student.nombre}}
+                        </td>
+                        <td>{{student.apellido}}</td>
+                        <td>{{student.correo}}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+</div>

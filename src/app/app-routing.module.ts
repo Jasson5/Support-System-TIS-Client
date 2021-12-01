@@ -1,3 +1,4 @@
+import { StudentsListComponent } from './components/students-list/students-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './authentication/components/login/login.component';
@@ -15,11 +16,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'view-companies', component: ViewCompaniesComponent },
-  { path: 'view-pending-companies', component: ViewPendingCompaniesComponent }
+  { path: 'view-pending-companies', component: ViewPendingCompaniesComponent },
+  { path: 'students-list', component: StudentsListComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', scrollOffset: [0, 64]})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
