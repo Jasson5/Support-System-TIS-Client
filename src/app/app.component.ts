@@ -19,14 +19,4 @@ export class AppComponent {
     });
   }
 
-  isInformationRoute() {
-    var homeRoute;
-    if (this.router.url == '/') {
-      homeRoute = false;
-    }
-    else {
-      homeRoute = true;
-    }
-    return homeRoute;
-  }
 }

@@ -26,7 +26,7 @@ import { StudentsListComponent } from './components/students-list/students-list.
     HomeComponent,
     HeaderComponent,
     LanfingPageComponent,
-    StudentsListComponent,
+    StudentsListComponent
   ],
   imports: [
     CommonModule,

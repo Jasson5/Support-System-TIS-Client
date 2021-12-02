@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   
   isInformationRoute() {
     var homeRoute;
-    var route = this.router.url
+    var route = this.router.url;
     if (route == '/' || route== '/#glo-plan' || route == '/#doc' || route == '/#schedules' || route == '/#sec-def') {
       homeRoute = true;
     }else{

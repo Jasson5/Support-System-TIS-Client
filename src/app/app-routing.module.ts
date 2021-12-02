@@ -8,6 +8,7 @@ import { ViewCompaniesComponent } from './company/components/view-companies/view
 import { ViewPendingCompaniesComponent } from './company/components/view-pending-companies/view-pending-companies.component';
 import { HomeComponent } from './components/home/home.component';
 import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
+import { EditCompanyComponent } from './company/components/edit-company/edit-company.component';
 
 const routes: Routes = [
   { path: '', component: LanfingPageComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'view-companies', component: ViewCompaniesComponent },
   { path: 'view-pending-companies', component: ViewPendingCompaniesComponent },
-  { path: 'students-list', component: StudentsListComponent }
+  { path: 'students-list', component: StudentsListComponent },
+  { path: 'edit-company', component: EditCompanyComponent }
 ];
 
 @NgModule({

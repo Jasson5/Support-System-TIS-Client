@@ -1,0 +1,82 @@
+<div class='web'>
+    <div class="container">
+        <div class="row" style="padding-top: 2rem">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <h2 class="title">Editar Empresa</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="eCompany">
+                           <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nombre Empresa (Corto)</label>
+                                    <input type="text" class="form-control" placeholder="Blackbox" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Tipo de sociedad</label>
+                                    <input type="text" class="form-control" disabled placeholder="S.R.L">
+                                </div>
+                           </div> 
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Nombre Empresa (Largo)</label>
+                                    <input type="text" class="form-control" placeholder="Blackbox" disabled>
+                                </div>    
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Direccion</label>
+                                    <input type="text" class="form-control" formControlName="direction">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Correo electronico</label>
+                                    <input type="text" class="form-control" formControlName="email">
+                                </div>
+                           </div> 
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="username">Socios</label>
+                                    <ul>
+                                        <li *ngFor='let student of listStudents'>
+                                            <input type="text" class="form-control" placeholder='{{student.name}}' disabled>
+                                        </li>
+                                    </ul>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-oran">Agregar socio</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Logo</label>
+                                    <div class="row">
+                                        <i class="far fa-file-image img-logo"></i>                                     
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-2">
+                                    <button class="btn-cancel">Cancelar</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn-save">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+            </div>
+        </div>
+    </div>
+</div>
+

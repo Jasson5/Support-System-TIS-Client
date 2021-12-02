@@ -7,11 +7,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewPendingCompaniesComponent } from './components/view-pending-companies/view-pending-companies.component';
+import { EditCompanyComponent } from './components/edit-company/edit-company.component';
 
 
 
 @NgModule({
-  declarations: [AddCompanyComponent, ViewCompaniesComponent, ViewPendingCompaniesComponent],
+  declarations: [AddCompanyComponent, ViewCompaniesComponent, ViewPendingCompaniesComponent,EditCompanyComponent],
   imports: [
     HttpClientModule,
     CommonModule,
