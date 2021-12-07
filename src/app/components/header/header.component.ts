@@ -20,9 +20,10 @@ import { AuthService } from 'src/app/authentication/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   @ViewChild('stickyMenu') menuElement: ElementRef;
-  public userName = "Juan";
-  public userRole = "Administrador";
+  public userName = "";
+  public userRole ;
   public campanyName = "Empresas";
+  public isAdmin;
   faUser = faUser;
   constructor(
     public router: Router,
@@ -30,6 +31,9 @@ export class HeaderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.getRoles().includes('Admin');
+    this.userName = this.auth.getUsername();
+    this.userRole = this.auth.getRoles();
   }
   
   isInformationRoute() {

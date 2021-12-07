@@ -57,4 +57,24 @@ export class UserService {
 
   //   return this.userDatastoreService.updateUser(userToEdit);
   // }
+
+  public RegisterUser(user) {
+    var newUser = new User();
+    var role = new Role();
+    var roles: Role[] = [];
+
+    role.name = "Documentary"
+
+    roles.push(role);
+
+    newUser.firstName = user.name;
+    newUser.username = user.email
+    newUser.lastName = user.name;
+    newUser.password = user.password;
+    newUser.confirmPassword = user.confirmPassword;
+    newUser.email = user.email;
+    newUser.roles = roles;
+
+    return this.userDatastoreService.registerUser(newUser);
+  }
 }

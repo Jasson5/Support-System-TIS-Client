@@ -9,6 +9,7 @@ import { ViewCompaniesComponent } from './company/components/view-companies/view
 import { ViewPendingCompaniesComponent } from './company/components/view-pending-companies/view-pending-companies.component';
 import { HomeComponent } from './components/home/home.component';
 import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
+import { WorkspaceComponent } from './workspace/components/workspace/workspace.component';
 import { EditCompanyComponent } from './company/components/edit-company/edit-company.component';
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'view-companies', component: ViewCompaniesComponent },
   { path: 'view-pending-companies', component: ViewPendingCompaniesComponent },
   { path: 'students-list', component: StudentsListComponent },
+  { path: 'workspace', component: WorkspaceComponent },
   { path: 'edit-company', component: EditCompanyComponent },
   { path: 'semesters', component: SemestersComponent}
 ];

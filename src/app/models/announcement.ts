@@ -1,6 +1,5 @@
 export class Announcement {
-    announcementId: number;
-    dateAnn: Date;
-    description: string;
-    file: string;    
+    Id: number;
+    description: string;    
+    documentUrl: string;    
 }

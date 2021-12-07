@@ -1,8 +1,11 @@
+import { Semester } from "./Semester";
+
 export class Offer {
-    offerId: number;
-    dateOffer: Date;
-    descriptionOffer: string;
-    fileOffer: string;
-    minOffer: number;
-    maxOffer: number;    
+    Id: number;
+    dateEnd: Date;
+    description: string;
+    documentOfferUrl: string;
+    minUsers: number;
+    maxUsers: number;   
+    semester: Semester; 
 }

@@ -2,8 +2,10 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';import { AnnouncementService } from 'src/app/announcement/services/announcement.service';
+import { AuthService } from 'src/app/authentication/services/auth.service';
  import { Announcement } from 'src/app/models/announcement';
 import { Offer } from 'src/app/models/offer';
+import { OfferService } from 'src/app/offer/services/offer.service';
 import { UploadService } from 'src/app/services/upload.service';
 ;
 
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit {
   private FILE_MAX_SIZE = 50000000;
   public pannouncementToEdit: Announcement;
   public offers: Offer[] = [];
+  public isAdmin;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,11 +40,13 @@ export class HomeComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private uploadService: UploadService,
     private spinner: NgxSpinnerService,
-    private announcementService: AnnouncementService
+    private auth: AuthService,
+    private offerService: OfferService
   ) { }
 
   ngOnInit(): void {
-    this.announcementService.listOffers().subscribe(offers => {
+    this.viewButonForOptions = this.auth.getRoles().includes('Admin');
+    this.offerService.listOffers().subscribe(offers => {
       this.offers = offers;
     });
   }

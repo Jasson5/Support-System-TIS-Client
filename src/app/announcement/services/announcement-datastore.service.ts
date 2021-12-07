@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Announcement } from 'src/app/models/announcement';
 import { Offer } from 'src/app/models/offer';
 import { environment } from 'src/environments/environment';
 
@@ -8,14 +9,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AnnouncementDatastoreService {
 
-  readonly ROOT_URL = `${environment.BACK_END_HOST}api/1.0/offer/`;
+  readonly ROOT_URL = `${environment.BACK_END_HOST}announcement/`;
   constructor(private http: HttpClient) { }
 
-  add(offer: Offer) {
-    return this.http.post<Offer>(this.ROOT_URL, offer);
+  add(announcement: Announcement) {
+    return this.http.post<Offer>(this.ROOT_URL, announcement);
   }
 
   list() {
-    return this.http.get<Offer[]>(this.ROOT_URL);
+    return this.http.get<Announcement[]>(this.ROOT_URL);
   }
 }
