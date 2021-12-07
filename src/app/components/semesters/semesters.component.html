@@ -1,0 +1,96 @@
+<ng-template #content let-modal>
+    
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="classTitle">Titulo de la Clase</label>
+          <div class="input-group">
+            <input id="classTitle" class="form-control">
+            
+          </div>
+          <label for="Semester">Semestre</label>
+          <div class="input-group">
+            <input id="Semester" class="form-control" placeholder='2-2021' disabled>
+            
+          </div>
+          <label for="classCode">Codigo de clase</label>
+          <div class="input-group">
+            <input id="classCode" class="form-control">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-form btn-cancel" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn-form btn-confirm" (click)="modal.close('Save click')">Aceptar</button>
+    </div>
+</ng-template>
+
+<div class="web">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn-nc" (click)="open(content)"><i class="fas fa-plus"></i>Nueva Clase</button>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="actual-semester">
+                    <div class="card mb-3" [routerLink]="['/home']">
+                        <div class="card-header c-title act-sem"><i class="fas fa-circle green"></i>En curso</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h1 class="card-title">Semestre 2-2021</h1>
+                                    <p class="card-text">Taller de Ingenieria de Software</p>
+                                </div>
+                                <div class="col-sm-2">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row" style="padding-top: 2rem;">
+            <div class="col-md-4">
+                <div class="past-semester">
+                    <div class="card mb-3" [routerLink]="['/home']">
+                        <div class="card-header c-title past-sem"><i class="fas fa-circle red"></i>Finalizado</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="card-title-past">Semestre 1-2021</h1>
+                                    <p class="card-text-past">Taller de Ingenieria de Software</p>
+                                </div>
+            
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+
+
+ 

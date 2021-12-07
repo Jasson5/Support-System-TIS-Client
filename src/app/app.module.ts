@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnnouncementEditorComponent } from './announcement/announcement-editor/announcement-editor.component';
 import { StickyNavModule } from 'ng2-sticky-nav';
 import { StudentsListComponent } from './components/students-list/students-list.component';
+import { SemestersComponent } from './components/semesters/semesters.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StudentsListComponent } from './components/students-list/students-list.
     HomeComponent,
     HeaderComponent,
     LanfingPageComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    SemestersComponent
   ],
   imports: [
     CommonModule,

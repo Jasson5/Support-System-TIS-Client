@@ -1,3 +1,4 @@
+import { SemestersComponent } from './components/semesters/semesters.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'view-companies', component: ViewCompaniesComponent },
   { path: 'view-pending-companies', component: ViewPendingCompaniesComponent },
   { path: 'students-list', component: StudentsListComponent },
-  { path: 'edit-company', component: EditCompanyComponent }
+  { path: 'edit-company', component: EditCompanyComponent },
+  { path: 'semesters', component: SemestersComponent}
 ];
 
 @NgModule({
