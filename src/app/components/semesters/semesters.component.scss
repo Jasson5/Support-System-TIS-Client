@@ -1,0 +1,136 @@
+.web{
+    background-color: #D8D8D8;
+    height: auto;
+    min-height: 90vh;
+}
+
+.actual-semester{
+    padding-top: 2rem;
+}
+
+label,
+input{
+    font-family: 'Raleway', sans-serif;
+    padding: 00.5rem;
+    font-weight: 600;
+}
+input{
+    border-radius: 1rem;
+}
+
+.card{
+    border-radius: 2rem;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+.c-title{
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: right;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    padding-right: 2rem;
+    color: white;
+}
+.act-sem{
+    background-color: #f0a500;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+.past-sem{
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    background-color: #273642;
+    font-size: 1rem;
+    padding-right: 1rem;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
+.green{
+    color: rgba(11, 189, 20, 0.87);
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+}
+.red{
+    color: rgba(255, 0, 76, 0.87);
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+}
+
+.fa-sign-in-alt{
+    font-size: 8rem;
+}
+.fa-plus{
+    padding-right: 1rem;
+}
+
+.card-body{
+    font-family: 'Raleway',sans-serif;
+    padding-left: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+.card-title{
+    font-weight: 800;
+    font-size: 4rem;
+}
+.card-text{
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.card-title-past{
+    font-weight: 800;
+    font-size: 2rem;
+}
+.card-text-past{
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.btn-nc{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    font-family: 'Raleway',sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2rem;
+}
+.btn-form{
+    
+    border-radius: 2rem;
+    width: 9rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border: none;
+    transition: all 0.3s ease 0s;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+
+}
+
+.btn-confirm{
+    background-color: #f0a500;
+    color: white;
+    
+}
+.btn-cancel{
+    background-color: white;
+    font-weight: bold;
+    color: #f0a500;
+    margin-left: 3rem;
+}
+
+.btn-cancel:hover,
+.btn-confirm:hover,
+.card:hover{
+    box-shadow: 0 5px 5px rgba(2, 2, 2, 0.4);
+}

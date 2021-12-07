@@ -22,6 +22,7 @@ import { StudentsListComponent } from './components/students-list/students-list.
 import { AddOfferComponent } from './offer/components/add-offer/add-offer.component';
 import { OfferModule } from './offer/offer.module';
 import { httpInterceptorProviders } from './authentication/http-interceptors';
+import { SemestersComponent } from './components/semesters/semesters.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { httpInterceptorProviders } from './authentication/http-interceptors';
     HeaderComponent,
     LanfingPageComponent,
     StudentsListComponent,
+    SemestersComponent
   ],
   imports: [
     CommonModule,

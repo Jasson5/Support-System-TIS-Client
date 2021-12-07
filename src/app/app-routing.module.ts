@@ -1,3 +1,4 @@
+import { SemestersComponent } from './components/semesters/semesters.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,6 +10,7 @@ import { ViewPendingCompaniesComponent } from './company/components/view-pending
 import { HomeComponent } from './components/home/home.component';
 import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
 import { WorkspaceComponent } from './workspace/components/workspace/workspace.component';
+import { EditCompanyComponent } from './company/components/edit-company/edit-company.component';
 
 const routes: Routes = [
   { path: '', component: LanfingPageComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'view-pending-companies', component: ViewPendingCompaniesComponent },
   { path: 'students-list', component: StudentsListComponent },
   { path: 'workspace', component: WorkspaceComponent },
+  { path: 'edit-company', component: EditCompanyComponent },
+  { path: 'semesters', component: SemestersComponent}
 ];
 
 @NgModule({
