@@ -4,43 +4,45 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <div class="card">                    
+                <div class="card">
                     <div class="card-body">
-                        <h2>Registrarse</h2>
-                        <div>
-                            <input type="text" placeholder="Nombres">
-                        </div>
-                        <div>
-                            <input type="text" placeholder="Apellidos">
-                        </div>
-                        <div>
-                            <input type="text" placeholder="Correo Institucional UMSS">
-                        </div>
-                        <div>
-                            <input type="text" placeholder="Codigo de clase">
-                        </div>
-                        
-                        <div>
-                            <input type="password" placeholder="Contraseña">
-                        </div>
-                        <div>
-                            <input type="password" placeholder="Confirmar Contraseña">
-                        </div>
-                        
-                        
-                        <div>
-                            <a [routerLink]="['/register-user']" class="btn btn-oran">Ingresar</a>
-                        </div>
-                        <div>
-                            <a [routerLink]="['/login']">Ya tienes una cuenta?</a>
-                        </div>
-                        
+                        <form [formGroup]="sendRegisterForm">
+                            <h2>Registrarse</h2>
+                            <div>
+                                <input type="text" placeholder="Nombres" formControlName="name">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Apellidos" formControlName="lastName">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Correo Institucional UMSS" formControlName="email">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Codigo de clase">
+                            </div>
 
+                            <div>
+                                <input type="password" placeholder="Contraseña" formControlName="password">
+                            </div>
+                            <div>
+                                <input id="confirmPassword" type="password" class="form-control" placeholder="confirmPassword" 
+                                    [ngClass]="{'is-invalid':sendRegisterForm.get('confirmPassword').errors && sendRegisterForm.get('confirmPassword').touched}"
+                                    formControlName="confirmPassword">
+                            </div>
+
+
+                            <div>
+                                <a (click)="register()" class="btn btn-oran">Ingresar</a>
+                            </div>
+                            <div>
+                                <a [routerLink]="['/login']">Ya tienes una cuenta?</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
             </div>
-        </div>      
+        </div>
     </div>
 </div>

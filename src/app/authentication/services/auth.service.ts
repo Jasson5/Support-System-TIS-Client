@@ -29,18 +29,21 @@ export class AuthService {
     user.id = 0;
     user.username = username;
     user.password = password;
+    user.firstName = username;
+    user.lastName = username;
+    user.confirmPassword = password;
 
     const reqHeader = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    return this.http.post<any>(environment.BACK_END_HOST + 'accounts/api-auth/', user, reqHeader)
+    return this.http.post<any>(environment.BACK_END_HOST + 'users/authenticate', user, reqHeader)
       .pipe(
         map(user => {
           localStorage.setItem('token', user.token);
           localStorage.setItem('username', user.username);
           localStorage.setItem('email', user.email);
-          // localStorage.setItem('roles', this.jwtDecodeService.decodeToken(user.token)['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
-          // localStorage.setItem('userid', this.jwtDecodeService.decodeToken(user.token)['user_id']);
-          // localStorage.setItem('expires', this.jwtDecodeService.decodeToken(user.token)['exp']);
+          localStorage.setItem('roles', this.jwtDecodeService.decodeToken(user.token)['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
+          localStorage.setItem('userid', this.jwtDecodeService.decodeToken(user.token)['user_id']);
+          localStorage.setItem('expires', this.jwtDecodeService.decodeToken(user.token)['exp']);
 
           return true;
         })

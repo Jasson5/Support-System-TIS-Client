@@ -1,14 +1,16 @@
 
-import { Company } from "src/app/models/company";
-import { Role } from "./role";
+import { Role } from './role'
 
 export class User {
-    user_id: number;
+    id: number;
     username: string;
-    last_name: string;
-    first_name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
+    oldPassword: string;
+    confirmPassword: string;
+    givenName: string;
+    isEnabled: Boolean;
     roles: Role[];
-    company: Company;
 }

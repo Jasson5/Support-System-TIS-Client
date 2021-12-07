@@ -19,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnnouncementEditorComponent } from './announcement/announcement-editor/announcement-editor.component';
 import { StickyNavModule } from 'ng2-sticky-nav';
 import { StudentsListComponent } from './components/students-list/students-list.component';
+import { AddOfferComponent } from './offer/components/add-offer/add-offer.component';
+import { OfferModule } from './offer/offer.module';
+import { httpInterceptorProviders } from './authentication/http-interceptors';
 
 @NgModule({
   declarations: [
@@ -41,12 +44,13 @@ import { StudentsListComponent } from './components/students-list/students-list.
     FontAwesomeModule,
     NgbModule,
     AppRoutingModule,
+    OfferModule,
     BrowserAnimationsModule,
     StickyNavModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],  
-  entryComponents: [AnnouncementEditorComponent],
+  providers: [httpInterceptorProviders],  
+  entryComponents: [AddOfferComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

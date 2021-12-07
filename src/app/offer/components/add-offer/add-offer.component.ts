@@ -3,27 +3,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { take } from 'rxjs/operators';
-import { Announcement } from 'src/app/models/announcement';
+import { Offer } from 'src/app/models/offer';
 import { CompressImageService } from 'src/app/services/compress/compress-image.service';
 import { UploadService } from 'src/app/services/upload.service';
-import { AnnouncementService } from '../services/announcement.service';
+import { OfferService } from '../../services/offer.service';
 
 @Component({
-  selector: 'app-announcement-editor',
-  templateUrl: './announcement-editor.component.html',
-  styleUrls: ['./announcement-editor.component.scss']
+  selector: 'app-add-offer',
+  templateUrl: './add-offer.component.html',
+  styleUrls: ['./add-offer.component.scss']
 })
-export class AnnouncementEditorComponent implements OnInit {
+export class AddOfferComponent implements OnInit {
 
-  public announcementEditorForm: FormGroup;
-  public folderName: string = "announcements";
+  public offerEditorForm: FormGroup;
+  public folderName: string = "offer";
   public thumbnail = null;
   public thumbnailData = null;
   public imageErrorSize = null;
   public file;
   private FILE_MAX_SIZE = 50000000;
-  public pannouncementToEdit: Announcement;
+  public offerToEdit: Offer;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,29 +32,32 @@ export class AnnouncementEditorComponent implements OnInit {
     private uploadService: UploadService,
     private compressImage: CompressImageService,
     private spinner: NgxSpinnerService,
-    private announcementService: AnnouncementService
+    private offerService: OfferService
   ) {
   }
 
   ngOnInit(): void {
-    this.buildFormAnnouncement();
+    this.buildFormOffer();
   }
 
-  buildFormAnnouncement() {
-    this.announcementEditorForm = this.formBuilder.group({
+  buildFormOffer() {
+    this.offerEditorForm = this.formBuilder.group({
       description: ['', [Validators.required, Validators.maxLength(500)]],
+      dateEnd: [this.calendar.getToday(), [Validators.required]],
       file: null,
+      minUsers: [, [Validators.required]],
+      maxUsers: [, [Validators.required]]
     });
   }
 
-  AddAnnouncement() {
-    var announcement = this.announcementEditorForm.value;
+  AddOffer() {
+    var offer = this.offerEditorForm.value;
     var component = this;
 
     this.uploadService.uploadFile(this.file, this.folderName)
       .then(function (data) {
-        announcement.thumbnailUrl = data.Location;
-        component.sendAnnouncementData(announcement);
+        offer.thumbnailUrl = data.Location;
+        component.sendOfferData(offer);
       })
       .catch(function (error) {
         console.log('There was an error uploading your file: ', error);
@@ -63,8 +65,9 @@ export class AnnouncementEditorComponent implements OnInit {
       });
   }
 
-  sendAnnouncementData(announcement) {
-    this.announcementService.addAnnouncement(announcement).subscribe(()=>{
+  sendOfferData(offer) {
+    offer.dateEnd = new Date(offer.dateEnd.year, offer.dateEnd.month - 1, offer.dateEnd.day);
+    this.offerService.addOffer(offer).subscribe(()=>{
     });
   }
 
@@ -83,12 +86,12 @@ export class AnnouncementEditorComponent implements OnInit {
           this.thumbnailData = null;
           this.file = null;
           this.imageErrorSize = "La imagen no puede exceder el tamaño de 1 MB";
-          this.announcementEditorForm.controls['file'].setErrors({ incorrect: true });
+          this.offerEditorForm.controls['file'].setErrors({ incorrect: true });
         } else {
           this.imageErrorSize = null;
           this.thumbnailData = event.target.result;
           // need to run CD since file load runs outside of zone
-          this.announcementEditorForm.controls['file'].reset();
+          this.offerEditorForm.controls['file'].reset();
           this.cd.markForCheck();
         }
       }
@@ -101,7 +104,19 @@ export class AnnouncementEditorComponent implements OnInit {
   }
 
   get description() {
-    return this.announcementEditorForm.get('description');
-  
+    return this.offerEditorForm.get('description');
   }
+
+  get dateEnd() {
+    return this.offerEditorForm.get('dateEnd');
+  }
+
+  get minUsers() {
+    return this.offerEditorForm.get('minUsers');
+  }
+
+  get maxUsers() {
+    return this.offerEditorForm.get('maxUsers');
+  }
+
 }

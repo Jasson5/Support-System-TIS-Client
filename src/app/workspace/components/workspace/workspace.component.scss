@@ -1,0 +1,32 @@
+.background {
+    background-color: #334756;
+    height: 90vh;
+}
+
+.companyName{
+    padding-top: 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+.col-btn-menu{
+    float: left;
+    width: 33.334%;
+    padding: 0;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+}
+.col-btn-menu:hover{    
+    background-color: #f0a500;
+}
+
+.btn-menu{
+    color: black;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.btn-menu:hover{
+    color: white;
+}

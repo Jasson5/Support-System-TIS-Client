@@ -25,8 +25,12 @@ export class UserDatastoreService {
   //   return this.http.patch<User>(this.ROOT_URL + '/' + userToEdit.id, userToEdit);
   // }
 
-  addUser(user: User) {
-    return this.http.post<User>(this.ROOT_URL, user);
+  registerUser(user: User) {
+    return this.http.post<User>(this.ROOT_URL +'/complete-user', user,{
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 
   changePassword(user: User) {
