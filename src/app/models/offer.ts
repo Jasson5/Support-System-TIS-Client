@@ -1,4 +1,4 @@
-import { Semester } from "./Semester";
+import { Semester } from "./semester";
 
 export class Offer {
     Id: number;

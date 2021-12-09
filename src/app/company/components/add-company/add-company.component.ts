@@ -8,7 +8,6 @@ import { debounceTime, map } from 'rxjs/operators';
 import { User } from 'src/app/authentication/models/user';
 import { CompanyStatusEnum } from 'src/app/models/enums/company-status-enum';
 import { Offer } from 'src/app/models/offer';
-import { Semester } from 'src/app/models/Semester';
 import { OfferService } from 'src/app/offer/services/offer.service';
 import { SemesterService } from 'src/app/semester/services/semester.service';
 import { CompanyService } from '../../services/company.service';

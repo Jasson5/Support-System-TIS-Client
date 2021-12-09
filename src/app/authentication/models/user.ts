@@ -1,5 +1,5 @@
 
-import { Semester } from 'src/app/models/Semester';
+import { Semester } from '../../models/semester';
 import { Role } from './role'
 
 export class User {

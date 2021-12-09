@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Semester } from 'src/app/models/Semester';
+import { Semester } from 'src/app/models/semester';
 import { SemesterDatastoreService } from './semester-datastore.service';
 
 @Injectable({

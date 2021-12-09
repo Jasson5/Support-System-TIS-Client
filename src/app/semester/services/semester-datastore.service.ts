@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/authentication/models/user';
-import { Semester } from 'src/app/models/Semester';
+import { Semester } from 'src/app/models/semester';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

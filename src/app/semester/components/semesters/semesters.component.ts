@@ -4,7 +4,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 import { UserService } from 'src/app/authentication/services/user.service';
 import { SemesterStatusEnum } from 'src/app/models/enums/semester-status-enum';
-import { Semester } from 'src/app/models/Semester';
+import { Semester } from 'src/app/models/semester';
 import { SemesterService } from '../../services/semester.service';
 
 @Component({
