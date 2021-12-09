@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Company } from 'src/app/models/company';
+import { CompanyStatusEnum } from 'src/app/models/enums/company-status-enum';
 import { CompanyService } from '../../services/company.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ViewPendingCompaniesComponent implements OnInit {
   constructor(private companyService: CompanyService) { }
 
   ngOnInit(): void {
-    this.companyService.listCompanys().subscribe(companies =>{
+    this.companyService.listCompanys(CompanyStatusEnum.PENDING).subscribe(companies =>{
       this.companies = companies;
     });
   }

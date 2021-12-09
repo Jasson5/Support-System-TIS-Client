@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CompanyDatastoreService {
-  readonly ROOT_URL = `${environment.BACK_END_HOST}api/1.0/company/`;
+  readonly ROOT_URL = `${environment.BACK_END_HOST}company/`;
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +16,11 @@ export class CompanyDatastoreService {
   }
 
   update(company: Company) {
-    return this.http.patch<Company>(this.ROOT_URL + '/' + company.companyId, company);
+    return this.http.patch<Company>(this.ROOT_URL + company.companyId, company);
   }
 
-  list() {
-    return this.http.get<Company[]>(this.ROOT_URL);
+  list(statusId) {
+    return this.http.get<Company[]>(this.ROOT_URL + statusId);
   }
 
   findById(id) {

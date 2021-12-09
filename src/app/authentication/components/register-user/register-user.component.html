@@ -16,11 +16,7 @@
                             </div>
                             <div>
                                 <input type="text" placeholder="Correo Institucional UMSS" formControlName="email">
-                            </div>
-                            <div>
-                                <input type="text" placeholder="Codigo de clase">
-                            </div>
-
+                            </div>   
                             <div>
                                 <input type="password" placeholder="Contraseña" formControlName="password">
                             </div>
@@ -29,8 +25,6 @@
                                     [ngClass]="{'is-invalid':sendRegisterForm.get('confirmPassword').errors && sendRegisterForm.get('confirmPassword').touched}"
                                     formControlName="confirmPassword">
                             </div>
-
-
                             <div>
                                 <a (click)="register()" class="btn btn-oran">Ingresar</a>
                             </div>

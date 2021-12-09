@@ -47,11 +47,20 @@
                             </div>
 
                             <div class="row py-2">
-                                <div class="col-md-8"></div>
-                                <div class="col-md-4">
-                                    <button class="add-member">
-                                        <fa-icon [icon]="faPlus" class="icon-size"></fa-icon> Añadir miembro
-                                    </button>
+                                <label><strong>Miembros</strong></label>
+                                <div *ngFor="let userSelected of usersSelected">
+                                    <div class="row my-2">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control " disabled
+                                                value="{{userSelected.email}}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="add-member" (click)="cancelSelectUser(userSelected)">
+                                                <fa-icon [icon]="faTimes" class="icon-size"></fa-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
@@ -66,7 +75,7 @@
                         <div class="col-md-3 text-center">
                             <button type="submit"
                                 [ngStyle]="{'background-color': companyEditorForm.valid ? '#f0a500' : '#FCCA5E'}"
-                                [disabled]="!companyEditorForm.valid" class="btn-register">
+                                [disabled]="!companyEditorForm.valid" (click)="addCompany()" class="btn-register">
                                 Registrar
                             </button>
                         </div>
@@ -82,37 +91,9 @@
                             </div>
                             <div class="py-2" style="height:20rem; overflow:auto;">
                                 <table class="default">
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
-                                    </tr>
-                                    <tr class="py-2">
-                                        <div><strong>Amilcar Llanque</strong></div>
-                                        <div>amilcarllanque@gmail.com</div>
+                                    <tr class="py-2" *ngFor="let user of users" (click)="selectUser(user)">
+                                        <div><strong>{{user.firstName}} {{user.lastName}}</strong></div>
+                                        <div>{{user.email}}</div>
                                     </tr>
                                 </table>
                             </div>

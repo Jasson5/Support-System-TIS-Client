@@ -8,18 +8,23 @@ import { OfferDatastoreService } from './offer-datastore.service';
 export class OfferService {
   constructor(private offerDatastoreService: OfferDatastoreService) { }
 
-  public addOffer(offer) {
+  public addOffer(offer, semester) {
     let newOffer = new Offer();
     newOffer.description = offer.description;
     newOffer.dateEnd = offer.dateEnd;
     newOffer.documentOfferUrl = offer.thumbnailUrl;
     newOffer.maxUsers = offer.maxUsers;
     newOffer.minUsers = offer.minUsers;
+    newOffer.semester = semester;
 
     return this.offerDatastoreService.add(newOffer);
   }
 
-  public listOffers() {
-    return this.offerDatastoreService.list();
+  public listOffers(semesterCode) {
+    return this.offerDatastoreService.list(semesterCode);
+  }
+
+  findById(id){
+    return this.offerDatastoreService.findById(id);
   }
 }

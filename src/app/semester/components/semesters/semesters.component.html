@@ -1,0 +1,79 @@
+<ng-template #content let-modal>
+    <div class="modal-body" *ngIf="isAdmin">
+        <form>
+            <div class="form-group">
+                <label for="classTitle">Semestre</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="className"
+                        [ngModelOptions]="{standalone: true}">
+                </div>
+                <label for="classCode">Codigo de clase</label>
+                <div class="input-group">
+                    <input id="classCode" class="form-control" value="{{codeClass}}" disabled>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-body" *ngIf="!isAdmin">
+        <form>
+            <div class="form-group">
+                <label for="classCode">Codigo de clase</label>
+                <div class="input-group">
+                    <input id="classCode" class="form-control" [(ngModel)]="codeClassForJoin"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-form btn-cancel" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn-form btn-confirm" (click)="modal.close('Save click', isAdmin)">Aceptar</button>
+    </div>
+</ng-template>
+
+<div class="web">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn-nc" (click)="open(content)"><i class="fas fa-plus"></i>{{textButton}}</button>
+            </div>
+        </div>
+        <div class="row" *ngFor="let activeSemester of activeSemesters">
+            <div class="col-md-12" (click)="enterToSemester(activeSemester.code)">
+                <div class="card mb-3">
+                    <div class="card-header c-title act-sem"><i class="fas fa-circle green"></i>En curso</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h1 class="card-title">{{activeSemester.name}}</h1>
+                                <p class="card-text">Código de clase: {{activeSemester.code}}</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 2rem;">
+            <div class="col-md-4" *ngFor="let semesterEnded of semestersEnded">
+                <div class="past-semester">
+                    <div class="card mb-3">
+                        <div class="card-header c-title past-sem"><i class="fas fa-circle red"></i>Finalizado</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="card-title-past">{{semesterEnded.name}}</h1>
+                                    <p class="card-text-past">Código de clase: {{semesterEnded.code}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,6 @@
+import { User } from "../authentication/models/user";
+import { Semester } from "./Semester";
+
 export class Company {
     companyId: number;
     shortName: string;
@@ -5,5 +8,8 @@ export class Company {
     society: string;
     address: string;
     telephone: number;
-    companyEmail: string;    
+    companyEmail: string; 
+    cmpanyStatus: number; //cambiar
+    semester: Semester;
+    members: User[];   
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Offer } from 'src/app/models/offer';
+import { SemesterService } from 'src/app/semester/services/semester.service';
 import { CompressImageService } from 'src/app/services/compress/compress-image.service';
 import { UploadService } from 'src/app/services/upload.service';
 import { OfferService } from '../../services/offer.service';
@@ -23,6 +24,7 @@ export class AddOfferComponent implements OnInit {
   public file;
   private FILE_MAX_SIZE = 50000000;
   public offerToEdit: Offer;
+  public semesterCode;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,12 +33,16 @@ export class AddOfferComponent implements OnInit {
     private calendar: NgbCalendar,
     private uploadService: UploadService,
     private compressImage: CompressImageService,
+    private semesterService: SemesterService,
     private spinner: NgxSpinnerService,
     private offerService: OfferService
   ) {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.semesterCode = params.code
+    });
     this.buildFormOffer();
   }
 
@@ -66,12 +72,14 @@ export class AddOfferComponent implements OnInit {
   }
 
   sendOfferData(offer) {
-    offer.dateEnd = new Date(offer.dateEnd.year, offer.dateEnd.month - 1, offer.dateEnd.day);
-    this.offerService.addOffer(offer).subscribe(()=>{
+    this.semesterService.FindSemesterByCode(this.semesterCode).subscribe(semester => {
+      offer.dateEnd = new Date(offer.dateEnd.year, offer.dateEnd.month - 1, offer.dateEnd.day);
+      this.offerService.addOffer(offer, semester).subscribe(() => {
+      });
     });
   }
 
-  cancel(){
+  cancel() {
   }
 
   onFileChange(event) {

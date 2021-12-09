@@ -15,7 +15,11 @@ export class OfferDatastoreService {
     return this.http.post<Offer>(this.ROOT_URL, offer);
   }
 
-  list() {
-    return this.http.get<Offer[]>(this.ROOT_URL);
+  list(semesterCode) {
+    return this.http.get<Offer[]>(this.ROOT_URL + semesterCode);
+  }
+
+  findById(id){
+    return this.http.get<Offer>(this.ROOT_URL + 'find-by-id/' + id);
   }
 }

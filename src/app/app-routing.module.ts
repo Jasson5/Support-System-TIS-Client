@@ -1,4 +1,4 @@
-import { SemestersComponent } from './components/semesters/semesters.component';
+import { SemestersComponent } from './semester/components/semesters/semesters.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,21 +9,21 @@ import { ViewCompaniesComponent } from './company/components/view-companies/view
 import { ViewPendingCompaniesComponent } from './company/components/view-pending-companies/view-pending-companies.component';
 import { HomeComponent } from './components/home/home.component';
 import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
-import { WorkspaceComponent } from './workspace/components/workspace/workspace.component';
 import { EditCompanyComponent } from './company/components/edit-company/edit-company.component';
+import { WorkspaceComponent } from './workspace/components/workspace/workspace.component';
 
 const routes: Routes = [
   { path: '', component: LanfingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register-user', component: RegisterUserComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'add-company', component: AddCompanyComponent },
+  { path: 'home/:code', component: HomeComponent },
+  { path: 'add-company/:id', component: AddCompanyComponent },
   { path: 'view-companies', component: ViewCompaniesComponent },
   { path: 'view-pending-companies', component: ViewPendingCompaniesComponent },
   { path: 'students-list', component: StudentsListComponent },
   { path: 'workspace', component: WorkspaceComponent },
   { path: 'edit-company', component: EditCompanyComponent },
-  { path: 'semesters', component: SemestersComponent}
+  { path: 'semester-board', component: SemestersComponent}
 ];
 
 @NgModule({

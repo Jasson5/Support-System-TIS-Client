@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(login.username, login.password).subscribe(
       () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/semester-board']).then(() => {
+        });
         this.spinner.hide();
       },
       error => {

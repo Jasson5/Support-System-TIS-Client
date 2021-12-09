@@ -22,7 +22,7 @@ import { StudentsListComponent } from './components/students-list/students-list.
 import { AddOfferComponent } from './offer/components/add-offer/add-offer.component';
 import { OfferModule } from './offer/offer.module';
 import { httpInterceptorProviders } from './authentication/http-interceptors';
-import { SemestersComponent } from './components/semesters/semesters.component';
+import { SemesterModule } from './semester/semester.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import { SemestersComponent } from './components/semesters/semesters.component';
     HeaderComponent,
     LanfingPageComponent,
     StudentsListComponent,
-    SemestersComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +46,7 @@ import { SemestersComponent } from './components/semesters/semesters.component';
     NgbModule,
     AppRoutingModule,
     OfferModule,
+    SemesterModule,
     BrowserAnimationsModule,
     StickyNavModule
   ],

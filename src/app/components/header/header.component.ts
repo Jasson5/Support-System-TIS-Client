@@ -33,7 +33,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.auth.getRoles().includes('Admin');
     this.userName = this.auth.getUsername();
-    this.userRole = this.auth.getRoles();
+    if(this.auth.getRoles().includes('Admin')){      
+      this.userRole = "Administrador";
+    }else{
+      if(this.auth.getRoles().includes('Frontman')){
+        this.userRole = "Representante";
+      }else{
+        if(this.auth.getRoles().includes('Documentary')){
+          this.userRole = "Estudiante"
+        }
+      }      
+    }
   }
   
   isInformationRoute() {

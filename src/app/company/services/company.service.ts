@@ -9,12 +9,14 @@ export class CompanyService {
 
   constructor(public companyDatastoreService: CompanyDatastoreService) { }
 
-  public addCompany(company, users) {
+  public addCompany(company, users, semester) {
     let newCompany= new Company();
-    // newCompany.name = company.name;
-    // newCompany.phone = company.phone;
-    // newCompany.email = company.email;
-    // newCompany.adress = company.adress;
+    newCompany.shortName = company.companyShortName;
+    newCompany.longName = company.longCompanyName;
+    newCompany.society = company.kindOfSociety;
+    newCompany.cmpanyStatus = company.statusId;
+    newCompany.semester = semester;
+    newCompany.members = users;
 
     return this.companyDatastoreService.add(newCompany);
   }
@@ -28,8 +30,8 @@ export class CompanyService {
     return this.companyDatastoreService.update(companyToEdit);
   }
 
-  public listCompanys() {
-    return this.companyDatastoreService.list();
+  public listCompanys(statusId) {
+    return this.companyDatastoreService.list(statusId);
   }
 
   public findById(id) {

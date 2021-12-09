@@ -69,7 +69,7 @@ export class UserService {
 
     newUser.firstName = user.name;
     newUser.username = user.email
-    newUser.lastName = user.name;
+    newUser.lastName = user.lastName;
     newUser.password = user.password;
     newUser.confirmPassword = user.confirmPassword;
     newUser.email = user.email;

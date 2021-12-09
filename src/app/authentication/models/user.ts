@@ -1,4 +1,5 @@
 
+import { Semester } from 'src/app/models/Semester';
 import { Role } from './role'
 
 export class User {
@@ -13,4 +14,5 @@ export class User {
     givenName: string;
     isEnabled: Boolean;
     roles: Role[];
+    semesters: Semester[];
 }

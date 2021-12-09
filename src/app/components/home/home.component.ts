@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';import { AnnouncementService } from 'src/app/announcement/services/announcement.service';
+import { NgxSpinnerService } from 'ngx-spinner'; import { AnnouncementService } from 'src/app/announcement/services/announcement.service';
 import { AuthService } from 'src/app/authentication/services/auth.service';
- import { Announcement } from 'src/app/models/announcement';
+import { Announcement } from 'src/app/models/announcement';
 import { Offer } from 'src/app/models/offer';
 import { OfferService } from 'src/app/offer/services/offer.service';
 import { UploadService } from 'src/app/services/upload.service';
@@ -46,15 +46,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewButonForOptions = this.auth.getRoles().includes('Admin');
-    this.offerService.listOffers().subscribe(offers => {
-      this.offers = offers;
+    this.route.params.subscribe(params => {
+      this.offerService.listOffers(params.code).subscribe(offers => {
+        this.offers = offers;
+      });
     });
   }
-  
-  goToLink(url: string){
+
+  goToLink(url: string) {
     window.open(url, "_blank");
-}
-  
+  }
+
   changeViewOptions() {
     if (this.viewOptions == false) {
       this.viewOptions = true;
