@@ -1,0 +1,72 @@
+.general{
+  padding: 1.5rem;
+}
+
+.table{
+table-layout: fixed;  
+background-color: white; 
+display: block;
+white-space: nowrap;
+overflow-y: auto;
+overflow-x: scroll;
+height: 430px;
+}
+
+.table-sec{
+  white-space: nowrap;
+  display: block;
+  overflow-y: auto;
+  overflow-x: scroll;
+}
+
+.th-normal{
+  width: 270px;
+}
+
+.total{
+  text-align: center;
+  background-color: #334756;
+  color: white;
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+.evFinal{
+  background-color: #334756;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.student {
+  text-align: center;
+  p{
+      display: inline;
+      padding: 1rem;
+  }
+  
+  .notaSemanal{
+      width: 50%;
+  }
+}
+
+.head-table{
+  text-align: center;
+  background-color: #f0a500;;
+}
+
+.view{
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+}
+
+input{
+  text-align: center;
+  border: 0;
+}
+
+.comboBox{
+  border: 0;
+}

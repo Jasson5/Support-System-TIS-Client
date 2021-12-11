@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.component';
 import { EditCompanyComponent } from './company/components/edit-company/edit-company.component';
 import { WorkspaceComponent } from './workspace/components/workspace/workspace.component';
+import { AttendanceComponent } from './workspace/components/attendance/attendance.component';
 
 const routes: Routes = [
   { path: '', component: LanfingPageComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'students-list', component: StudentsListComponent },
   { path: 'workspace', component: WorkspaceComponent },
   { path: 'edit-company', component: EditCompanyComponent },
-  { path: 'semester-board', component: SemestersComponent}
+  { path: 'semester-board', component: SemestersComponent},
+  { path: 'asistencia', component: AttendanceComponent}
 ];
 
 @NgModule({

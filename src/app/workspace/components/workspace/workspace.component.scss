@@ -3,10 +3,48 @@
     height: 90vh;
 }
 
+.table-general{
+    margin-top: 9.4rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+}
+
+.table{
+    border-collapse: collapse;
+    border-style: hidden;
+    border-radius: 50%;
+}
+
+  /* top-left border-radius */
+  table tr:first-child th:first-child,
+  table.Info tr:first-child td:first-child {
+      border-top-left-radius: 1.5rem;
+  }
+  
+  /* top-right border-radius */
+  table tr:first-child th:last-child,
+  table.Info tr:first-child td:last-child {
+      border-top-right-radius: 1.5rem;;
+  }
+  
+  /* bottom-left border-radius */
+  table tr:last-child td:first-child {
+      border-bottom-left-radius: 1.5rem;;
+  }
+  
+  /* bottom-right border-radius */
+  table tr:last-child td:last-child {
+      border-bottom-right-radius: 1.5rem;;
+  }
+
 .companyName{
     padding-top: 1.5rem;
     color: white;
     text-align: center;
+}
+
+.btn-group{
+    padding: 1rem;
 }
 
 .col-btn-menu{
@@ -29,4 +67,42 @@
 
 .btn-menu:hover{
     color: white;
+}
+
+
+
+.head-table{
+    color: white;
+    background-color: #f0a500;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.body-table{
+    background-color: white;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.btn-viewCompany{  
+    border-radius: 2rem;
+    font-size: 1.3rem;
+    border: none;
+    margin-bottom: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    background-color: #f0a500;
+    color: white;
+
+    width: 250px;
+    margin-left: 2.1rem;
+
+}	
+
+.bg-table{
+    background-color: #D8D8D8;
+    border-radius: 2rem;
+    height: 580px;
+    width: 98%;
+    padding: 0.5rem;
 }

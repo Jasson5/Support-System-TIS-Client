@@ -1,3 +1,5 @@
+import { WorkspaceModule } from './workspace/workspace.module';
+import { AttendanceComponent } from './workspace/components/attendance/attendance.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
@@ -30,7 +32,7 @@ import { SemesterModule } from './semester/semester.module';
     HomeComponent,
     HeaderComponent,
     LanfingPageComponent,
-    StudentsListComponent,
+    StudentsListComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { SemesterModule } from './semester/semester.module';
     OfferModule,
     SemesterModule,
     BrowserAnimationsModule,
-    StickyNavModule
+    StickyNavModule,
+    WorkspaceModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [httpInterceptorProviders],  
