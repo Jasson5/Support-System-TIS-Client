@@ -11,6 +11,9 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
   declarations: [WorkspaceComponent, HomeworksComponent, CalendarComponent, AttendanceComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[
+    AttendanceComponent
+  ],
 })
 export class WorkspaceModule { }

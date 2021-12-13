@@ -15,6 +15,7 @@
     "@angular/compiler": "~10.1.2",
     "@angular/core": "~10.1.2",
     "@angular/forms": "~10.1.2",
+    "@angular/language-service": "^13.0.3",
     "@angular/localize": "^13.0.2",
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",

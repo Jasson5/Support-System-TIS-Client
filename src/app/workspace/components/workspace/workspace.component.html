@@ -1,23 +1,63 @@
 <div class="background">
-    <div class="container">
+    <div class="space">
         <div class="row">
             <div class="col-md-2">
-                asdddddddddddddddddddda
+                <div class="row">
+                    <div class="table-general">
+                        <table class="table">
+                            <thead class="head-table">
+                                <tr>
+                                    <th scope="col">Empresa</th>
+                                </tr>
+                            </thead>
+                            <tbody class="body-table">
+                                <tr >
+                                    <td>Grupo 1</td>
+                                </tr>
+                                <tr >
+                                    <td>Grupo 2</td>
+                                </tr>
+                                <tr >
+                                    <td>Grupo 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Grupo 4</td>
+                                </tr>
+                            </tbody>  
+                        </table> 
+                        
+                    </div>
+                    <div class="row">
+                        <button class="btn-viewCompany"> Ver companias</button>
+                    </div>                       
+                </div>
             </div>
+    
             <div class="col-md-10">
-                <div class="row companyName pb-3">
-                    <h1><strong>{{companyName}}</strong></h1>
+                <div class="row">
+                    <h1 class="companyName">{{companyName}}</h1>
                 </div>
                 <div class="row">
-                    <div class="col-btn-menu" style="border-radius: 1rem 0rem 0rem 1rem;">
-                        <a class="btn-menu">Trabajo</a>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="btn-group">
+                                <div class="col-btn-menu" style="border-radius: 1rem 0rem 0rem 1rem;">
+                                    <a class="btn-menu">Trabajo</a>
+                                </div>
+                                <div class="col-btn-menu">
+                                    <a class="btn-menu">Calendario</a>
+                                </div>
+                                <div class="col-btn-menu" style="border-radius: 0rem 1rem 1rem 0rem;">
+                                    <a class="btn-menu">Asistencia</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-btn-menu">
-                        <a class="btn-menu">Calendario</a>
-                    </div>
-                    <div class="col-btn-menu" style="border-radius: 0rem 1rem 1rem 0rem;">
-                        <a class="btn-menu">Asistencia</a>
-                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row bg-table">
+                    <app-attendance></app-attendance>
                 </div>
             </div>
         </div>
