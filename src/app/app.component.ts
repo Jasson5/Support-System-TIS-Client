@@ -19,4 +19,15 @@ export class AppComponent {
     });
   }
 
+  isLoginComp() {
+    var homeRoute;
+    var route = this.router.url;
+    if (route == '/login' || route== '/register-user') {
+      homeRoute = true;
+    }else{
+      homeRoute = false;
+    }
+    return homeRoute;
+  }
+
 }

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { User } from 'src/app/authentication/models/user';
+import { Offer } from 'src/app/models/offer';
+import { OfferService } from 'src/app/offer/services/offer.service';
+import { SemesterService } from 'src/app/semester/services/semester.service';
 
 @Component({
   selector: 'app-students-list',
@@ -7,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsListComponent implements OnInit {
 
+  @ViewChild('searchMember', { static: true }) searchMember: ElementRef;
   headers = ["ID", "Nombre", "Apellido", "Correo"];
   estudiante =[
     {nombre: 'Daniel', 
@@ -15,94 +22,39 @@ export class StudentsListComponent implements OnInit {
     {nombre: 'Pablo', 
     apellido: 'Zelada', 
     correo: '201800141@est.umss.edu'},
-    {nombre: 'Diego', 
-    apellido: 'Chavez', 
-    correo: '201800142@est.umss.edu'},
-    {nombre: 'Andres', 
-    apellido: 'Tapia', 
-    correo: '201800143@est.umss.edu'},
-    {nombre: 'Luis', 
-    apellido: 'Quiroz', 
-    correo: '201800144@est.umss.edu'},
-    {nombre: 'Daniel', 
-    apellido: 'Janco', 
-    correo: '201800140@est.umss.edu'},
-    {nombre: 'Pablo', 
-    apellido: 'Zelada', 
-    correo: '201800141@est.umss.edu'},
-    {nombre: 'Diego', 
-    apellido: 'Chavez', 
-    correo: '201800142@est.umss.edu'},
-    {nombre: 'Andres', 
-    apellido: 'Tapia', 
-    correo: '201800143@est.umss.edu'},
-    {nombre: 'Luis', 
-    apellido: 'Quiroz', 
-    correo: '201800144@est.umss.edu'},
-    {nombre: 'Daniel', 
-    apellido: 'Janco', 
-    correo: '201800140@est.umss.edu'},
-    {nombre: 'Pablo', 
-    apellido: 'Zelada', 
-    correo: '201800141@est.umss.edu'},
-    {nombre: 'Diego', 
-    apellido: 'Chavez', 
-    correo: '201800142@est.umss.edu'},
-    {nombre: 'Andres', 
-    apellido: 'Tapia', 
-    correo: '201800143@est.umss.edu'},
-    {nombre: 'Luis', 
-    apellido: 'Quiroz', 
-    correo: '201800144@est.umss.edu'},
-    {nombre: 'Daniel', 
-    apellido: 'Janco', 
-    correo: '201800140@est.umss.edu'},
-    {nombre: 'Pablo', 
-    apellido: 'Zelada', 
-    correo: '201800141@est.umss.edu'},
-    {nombre: 'Diego', 
-    apellido: 'Chavez', 
-    correo: '201800142@est.umss.edu'},
-    {nombre: 'Andres', 
-    apellido: 'Tapia', 
-    correo: '201800143@est.umss.edu'},
-    {nombre: 'Luis', 
-    apellido: 'Quiroz', 
-    correo: '201800144@est.umss.edu'},
-    {nombre: 'Daniel', 
-    apellido: 'Janco', 
-    correo: '201800140@est.umss.edu'},
-    {nombre: 'Pablo', 
-    apellido: 'Zelada', 
-    correo: '201800141@est.umss.edu'},
-    {nombre: 'Diego', 
-    apellido: 'Chavez', 
-    correo: '201800142@est.umss.edu'},
-    {nombre: 'Andres', 
-    apellido: 'Tapia', 
-    correo: '201800143@est.umss.edu'},
-    {nombre: 'Luis', 
-    apellido: 'Quiroz', 
-    correo: '201800144@est.umss.edu'},
-    {nombre: 'Daniel', 
-    apellido: 'Janco', 
-    correo: '201800140@est.umss.edu'},
-    {nombre: 'Pablo', 
-    apellido: 'Zelada', 
-    correo: '201800141@est.umss.edu'},
-    {nombre: 'Diego', 
-    apellido: 'Chavez', 
-    correo: '201800142@est.umss.edu'},
-    {nombre: 'Andres', 
-    apellido: 'Tapia', 
-    correo: '201800143@est.umss.edu'},
-    {nombre: 'Luis', 
-    apellido: 'Quiroz', 
-    correo: '201800144@est.umss.edu'}
   ]
-  constructor() { }
+  public offer: Offer = null;
+  public users: User[] = [];
+  constructor(
+    private route: ActivatedRoute,
+    private offerService: OfferService,
+    private semesterService: SemesterService,
+  ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.offerService.findById(params.id).subscribe(offer => {
+        this.offer = offer;
+        this.searchUsers('');
+        fromEvent(this.searchMember.nativeElement, 'keyup').pipe(
+          /*map((event: any) => {
+            return event.target.value;
+          }),
+          debounceTime(1000)*/
+        ).subscribe(text => {
+          this.searchUsers(''+text);
+        });
+      });
+    });
+  }
+
+  searchUsers(value: string = "") {
+    
+    this.semesterService.listUsersBySemester(value, this.offer.semester.code).subscribe(users => {
+      
+      this.users = users;
+      console.log(this.users);
+    });
   }
 
 }
