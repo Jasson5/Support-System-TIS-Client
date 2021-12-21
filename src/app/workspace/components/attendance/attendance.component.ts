@@ -24,7 +24,7 @@ export class AttendanceComponent implements OnInit {
   date;
   faPlus = faPlus;
   public newAttendance = false;
-  public groupAttendances: [] = [];
+  public groupAttendances;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,15 +54,33 @@ export class AttendanceComponent implements OnInit {
   listAtenances() {
     this.attendanceService.listAttendancesByCompanyName(this.company.shortName).subscribe(attendances => {
       this.attendances = attendances;
-      this.groupAttendances = _.groupBy(this.attendances, function(attendance) {
-        return attendance.attendanceDate;
-      });      
-      console.log(this.groupAttendances)
+      this.groupAttendances = this.agrupar(this.attendances);
+      console.log(this.groupAttendances[0].listStudent)
     });
 
     this.attendanceService.listGradeByCompany(this.company.shortName).subscribe(gradeAverage => {
       this.gradeAverages = gradeAverage;
     });
+  }
+
+  agrupar(lista:Array<any>):Array<any>{
+    var listaFechas = new Array<string>()
+    for(let asistencia of lista){
+        if(!listaFechas.includes(asistencia.attendanceDate)){
+          listaFechas.push(asistencia.attendanceDate)
+        }
+    }
+    var listaFinal:Array<any> = new Array<any>()
+    for(let fecha of listaFechas){
+      var listStudent: Array<any> = new Array<any>()
+      for(let asistencia of lista){
+        if(asistencia.attendanceDate == fecha){
+          listStudent.push(asistencia)
+        }
+      }
+      listaFinal.push({fecha,listStudent})
+    }
+    return listaFinal
   }
 
   createNewAttendance(){

@@ -17,20 +17,21 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <tr *ngFor='let attendance of groupAttendances'>
-              <td >{{groupAttendances.date[0].attendanceDate | date: 'dd/MM/yyyy'}}</td>
-              <td class="student" *ngFor='let student of company?.members'>
-                <div class="row px-3">
-                    <div style="float: left; width: 200px;">
-                        {{student.givenName}}
+            <tr *ngFor='let attendances of groupAttendances'>
+                <td>{{attendances.fecha | date: 'dd/MM/yyyy'}}</td>
+                <td class="student" *ngFor='let attendance of attendances.listStudent; let i = index'>
+                    <div class="row px-3" >
+                        <div style="float: left; width: 200px;">
+                            {{attendance.user.givenName}}
+                        </div>
+                        <div style="float: left; width: 100px;">
+
+                            {{attendance.attendanceGrade}}
+                        </div>
                     </div>
-                    <div style="float: left; width: 100px;">
-                        Nota
-                    </div>
-                </div>
-              </td>
-              <td><a class="view">Visualizar</a></td>
-          </tr> -->
+                </td>
+                <td><a class="view">Visualizar</a></td>
+            </tr>
             <tr *ngIf="!newAttendance">
                 <button class="btn btn-newAttendance" (click)="createNewAttendance()">
                     <fa-icon [icon]="faPlus" class="icon-size"></fa-icon> Crear nueva asistencia
@@ -95,19 +96,19 @@
             <tr>
                 <td class="evFinal">Evaluacion final</td>
                 <td *ngFor='let student of company?.members'>
-                  <div style="float: left; width: auto;" >
-                      <td>
-                          <input placeholder="Nota" />
-                      </td>
-                      <td>
-                          <button class="submit save-attendance">
-                              <fa-icon [icon]="faSave" class="icon-size"></fa-icon>
-                          </button>
-                      </td>
-                  </div>
-              </td>
-            </tr>
-        </tbody>
-    </table>
+                    <div style="float: left; width: auto;">
+                <td>
+                    <input placeholder="Nota" />
+                </td>
+                <td>
+                    <button class="submit save-attendance">
+                        <fa-icon [icon]="faSave" class="icon-size"></fa-icon>
+                    </button>
+                </td>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
