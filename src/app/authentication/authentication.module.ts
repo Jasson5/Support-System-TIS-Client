@@ -10,6 +10,8 @@ import { UserDatastoreService } from './services/user-datastore.service';
 import { UserService } from './services/user.service';
 import { JwtDecodeService } from './services/jwt-decode.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -17,19 +19,21 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     LoginComponent,
     RegisterUserComponent],
-    imports: [
-      CommonModule,
-      FormsModule,
-      RouterModule,
-      ReactiveFormsModule,
-      HttpClientModule
-    ],
-    providers: [
-      AuthGuardService,
-      AuthService,
-      UserDatastoreService,
-      UserService,
-      JwtDecodeService
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule,
+    NgxSpinnerModule
+  ],
+  providers: [
+    AuthGuardService,
+    AuthService,
+    UserDatastoreService,
+    UserService,
+    JwtDecodeService
+  ],  
 })
 export class AuthenticationModule { }

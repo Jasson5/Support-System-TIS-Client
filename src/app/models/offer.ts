@@ -1,7 +1,8 @@
 import { Semester } from "./semester";
 
 export class Offer {
-    Id: number;
+    id: number;
+    dateCreation: Date;
     dateEnd: Date;
     description: string;
     documentOfferUrl: string;

@@ -9,7 +9,7 @@ export class Company {
     address: string;
     telephone: number;
     companyEmail: string; 
-    cmpanyStatus: number; //cambiar
+    cmpanyStatus: number; 
     semester: Semester;
     members: User[];   
 }

@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 
@@ -22,12 +22,13 @@ export class HeaderComponent implements OnInit {
   @ViewChild('stickyMenu') menuElement: ElementRef;
   public userName = "";
   public userRole ;
-  public campanyName = "Empresas";
+  public companyName = "Mi Empresa";
   public isAdmin;
   faUser = faUser;
   constructor(
     public router: Router,
-    private auth: AuthService
+    private auth: AuthService, 
+    private route: ActivatedRoute,
     ) { }
 
   ngOnInit(): void {
@@ -35,9 +36,11 @@ export class HeaderComponent implements OnInit {
     this.userName = this.auth.getUsername();
     if(this.auth.getRoles().includes('Admin')){      
       this.userRole = "Administrador";
+      this.companyName = "Empresas";
     }else{
       if(this.auth.getRoles().includes('Frontman')){
         this.userRole = "Representante";
+        this.companyName = "Mi Empresa";
       }else{
         if(this.auth.getRoles().includes('Documentary')){
           this.userRole = "Estudiante"
@@ -57,9 +60,18 @@ export class HeaderComponent implements OnInit {
     return homeRoute;
   }
 
+  isNotSemesterBoard() {
+    var route = this.router.url;
+    if (route == '/semester-board') {
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   logout() {
     this.auth.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   

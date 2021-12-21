@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 import { UserService } from 'src/app/authentication/services/user.service';
 import { SemesterStatusEnum } from 'src/app/models/enums/semester-status-enum';
@@ -28,12 +29,13 @@ export class SemestersComponent implements OnInit {
     private modalService: NgbModal,
     private semesterService: SemesterService,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private auth: AuthService
   ) { }
 
   ngOnInit(): void {
     this.isAdmin = this.auth.getRoles().includes('Admin');
-    this.textButton = this.isAdmin? "Nueva Clase" : "Unirse";
+    this.textButton = this.isAdmin ? "Nueva Clase" : "Unirse";
     this.listSemesters();
   }
 
@@ -41,9 +43,9 @@ export class SemestersComponent implements OnInit {
     this.getRandomCode();
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-      if(this.isAdmin){
+      if (this.isAdmin) {
         this.addSemester();
-      }else{
+      } else {
         this.joinToClass();
       }
     }, (reason) => {
@@ -72,17 +74,23 @@ export class SemestersComponent implements OnInit {
   }
 
   addSemester() {
+    this.spinner.show();
     this.semesterService.addSemester(this.className, this.codeClass, SemesterStatusEnum.OPEN).subscribe(() => {
       this.listSemesters();
     });
   }
 
-  joinToClass(){
+  joinToClass() {
+    this.spinner.show();
     var userId = this.auth.getUserId();
-    this.semesterService.JoinToSemester(userId, this.codeClassForJoin).subscribe(() =>{});
+    this.semesterService.JoinToSemester(userId, this.codeClassForJoin).subscribe(() => {   
+      this.listSemesters();    
+      this.spinner.hide();
+    });
   }
 
   listSemesters() {
+    this.spinner.show();
     this.activeSemesters = [];
     this.semestersEnded = [];
     if (this.auth.getRoles().includes('Admin')) {
@@ -95,6 +103,7 @@ export class SemestersComponent implements OnInit {
             this.semestersEnded.push(semester);
           }
         });
+        this.spinner.hide();
       })
     } else {
       this.semesterService.listSemestersByUserId(this.auth.getUserId()).subscribe(semesters => {
@@ -105,12 +114,14 @@ export class SemestersComponent implements OnInit {
           if (semester.statusId == SemesterStatusEnum.CLOSE) {
             this.semestersEnded.push(semester);
           }
-        });
+        });        
+        this.spinner.hide();
       });
     }
   }
 
-  enterToSemester(code) {
+  enterToSemester(code) {    
+    localStorage.setItem('semesterCode', code);
     this.router.navigate(['/home', code]);
   }
 }

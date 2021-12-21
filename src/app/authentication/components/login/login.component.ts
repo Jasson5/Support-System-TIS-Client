@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.logoUrl = environment.LOGO_URL;
     this.buildForm();
+    
   }
 
   private buildForm() {
@@ -41,14 +42,14 @@ export class LoginComponent implements OnInit {
     var login = this.loginForm.value;
 
     this.auth.login(login.username, login.password).subscribe(
-      () => {
+      (login) => {
         this.router.navigate(['/semester-board']).then(() => {
         });
         this.spinner.hide();
       },
-      error => {
-        this.errorMessage = error.message;
+      (error) => {
         this.spinner.hide();
+        alert(error.error.error.message);
       }
     );
   }

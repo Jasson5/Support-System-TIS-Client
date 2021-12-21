@@ -16,7 +16,7 @@
                                 formControlName="password">
                             </div>
                             <div>
-                                <button fullWidth class="btn btn-oran" status="success" [disabled]="!loginForm.valid">Ingresar</button>
+                                <button id="liveToastBtn" fullWidth class="btn btn-oran" status="success" [disabled]="!loginForm.valid">Ingresar</button>
                             </div>
                         </form>
                         <div>
@@ -31,3 +31,7 @@
         </div>
     </div>
 </div>
+<ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: #0275d8; font-size: 20px; font-weight: bold;"> Cargando... </p>
+</ngx-spinner>

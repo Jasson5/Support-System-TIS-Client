@@ -1,14 +1,12 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner'; import { AnnouncementService } from 'src/app/announcement/services/announcement.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AnnouncementService } from 'src/app/announcement/services/announcement.service';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 import { Announcement } from 'src/app/models/announcement';
+import { HomeInformarion } from 'src/app/models/home-information';
 import { Offer } from 'src/app/models/offer';
 import { OfferService } from 'src/app/offer/services/offer.service';
-import { UploadService } from 'src/app/services/upload.service';
-;
-
 
 @Component({
   selector: 'app-home',
@@ -23,38 +21,60 @@ export class HomeComponent implements OnInit {
   public viewAdvertisements = false;
   public AdvertisementsStatus;
   public AnnouncementsStatus;
-  public announcementEditorForm: FormGroup;
-  public folderName: string = "announcements";
-  public thumbnail = null;
-  public thumbnailData = null;
-  public imageErrorSize = null;
-  public file;
-  private FILE_MAX_SIZE = 50000000;
-  public pannouncementToEdit: Announcement;
   public offers: Offer[] = [];
-  public isAdmin;
+  public announcements: Announcement[] = [];
+  public homeInformarions: HomeInformarion[] = [];
+  public autor;
 
   constructor(
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private cd: ChangeDetectorRef,
-    private uploadService: UploadService,
     private spinner: NgxSpinnerService,
     private auth: AuthService,
+    private announcementService: AnnouncementService,
     private offerService: OfferService
   ) { }
 
   ngOnInit(): void {
     this.viewButonForOptions = this.auth.getRoles().includes('Admin');
+    this.autor = this.auth.getUsername();
     this.route.params.subscribe(params => {
-      this.offerService.listOffers(params.code).subscribe(offers => {
-        this.offers = offers;
-      });
+      this.spinner.show();
+      this.listHomeInformation(params.code);
     });
   }
 
   goToLink(url: string) {
     window.open(url, "_blank");
+  }
+
+  listHomeInformation(code) {
+    this.spinner.show();
+    this.offerService.listOffers(code).subscribe(offers => {
+      offers.forEach(o => {
+        var homeInformarion = new HomeInformarion();
+        homeInformarion.statusId = 1;
+        homeInformarion.id = o.id;
+        homeInformarion.dateCreated = o.dateCreation;
+        homeInformarion.dateEnd = o.dateEnd;
+        homeInformarion.description = o.description;
+        homeInformarion.documentUrl = o.documentOfferUrl;
+        homeInformarion.minUsers = o.minUsers;
+        homeInformarion.maxUsers = o.maxUsers;
+        this.homeInformarions.push(homeInformarion);
+      });
+      this.announcementService.listAnnouncements(code).subscribe(announcements => {
+        announcements.forEach(a => {
+          var homeInformarion = new HomeInformarion();
+          homeInformarion.statusId = 2;
+          homeInformarion.dateCreated = a.dateCreation;
+          homeInformarion.description = a.description;
+          homeInformarion.documentUrl = a.documentUrl;
+          this.homeInformarions.push(homeInformarion);
+        })
+        this.homeInformarions= this.homeInformarions.sort((a,b) => a.dateCreated.toString().localeCompare(b.dateCreated.toString())).reverse();
+        this.spinner.hide();
+      });
+    });
   }
 
   changeViewOptions() {

@@ -5,7 +5,10 @@ import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { fromEvent } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
+import { Role } from 'src/app/authentication/models/role';
 import { User } from 'src/app/authentication/models/user';
+import { AuthService } from 'src/app/authentication/services/auth.service';
+import { UserService } from 'src/app/authentication/services/user.service';
 import { CompanyStatusEnum } from 'src/app/models/enums/company-status-enum';
 import { Offer } from 'src/app/models/offer';
 import { OfferService } from 'src/app/offer/services/offer.service';
@@ -23,8 +26,10 @@ export class AddCompanyComponent implements OnInit {
   public companyEditorForm: FormGroup;
   public users: User[] = [];
   public usersSelected: User[] = [];
+  public myAccount: User;
   public offer: Offer = null;
   faTimes = faTimes;
+  public me;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,11 +38,14 @@ export class AddCompanyComponent implements OnInit {
     public router: Router,
     private offerService: OfferService,
     private semesterService: SemesterService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private userService: UserService,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      this.spinner.show();
       this.offerService.findById(params.id).subscribe(offer => {
         this.offer = offer;
         this.searchUsers('');
@@ -65,16 +73,32 @@ export class AddCompanyComponent implements OnInit {
   searchUsers(value: string = "") {
     this.spinner.show();
     this.semesterService.listUsersBySemester(value, this.offer.semester.code).subscribe(users => {
-      this.spinner.hide();
       this.users = users;
+      if (!this.auth.getRoles().includes('Admin')) {
+        this.userService.findById(this.auth.getUserId()).subscribe(user => {
+          this.me = user.email;
+          this.myAccount = user;
+          var rerult = this.users.find(u => u.email == user.email);
+          var index = this.users.indexOf(rerult);
+          this.users.splice(index, 1);
+        });
+      }
+      this.spinner.hide();
     });
   }
 
   selectUser(user: User) {
-    var index = this.users.indexOf(user);
-    if (index > -1) {
-      this.users.splice(index, 1);
-      this.usersSelected.push(user);
+    if (this.usersSelected.length + 1 < this.offer.maxUsers) {
+      var index = this.users.indexOf(user);
+      if (index > -1) {
+        this.users.splice(index, 1);
+        var role = new Role();
+        var roles: Role[] = [];
+        role.name = "Documentador";
+        roles.push(role);
+        user.roles = roles;
+        this.usersSelected.push(user);
+      }
     }
   }
 
@@ -87,12 +111,26 @@ export class AddCompanyComponent implements OnInit {
   }
 
   addCompany() {
+    this.spinner.show();
     var company = this.companyEditorForm.value;
     company.statusId = CompanyStatusEnum.PENDING;
+    if (!this.auth.getRoles().includes('Admin')) {
+      var role = new Role();
+      var roles: Role[] = [];
+      role.name = "Representante";
+      roles.push(role);
+      this.myAccount.roles = roles;
+      this.usersSelected.push(this.myAccount);
+    }
     this.semesterService.FindSemesterByCode(this.offer.semester.code).subscribe(semester => {
-      this.companyService.addCompany(company, this.usersSelected, semester).subscribe(()=>{
-        this.router.navigate(['/home',this.offer.semester.code ])
-      });
+      this.companyService.addCompany(company, this.usersSelected, semester).subscribe(() => {
+        this.spinner.hide();
+        this.router.navigate(['/home', this.offer.semester.code])
+      },
+        error => {
+          this.spinner.hide();
+          alert(error.error.error.message)
+        });
     })
   }
 

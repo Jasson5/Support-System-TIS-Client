@@ -1,0 +1,21 @@
+<div style="background-color: #f0a500;">
+    <div style="text-align: right;">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="container">
+        <div class="text-center">
+            <h2>{{data.companyName}}</h2>
+        </div>
+    </div>
+</div>
+<div class="container" >
+    <div class="row">
+        <strong>Semestre: {{data.semester}}</strong>
+    </div>
+    <div class="row py-2" *ngFor="let member of data.members">
+        <div>{{member.givenName}}   ({{member.role}})</div>
+        <div>{{member.email}}</div>
+    </div>
+</div>

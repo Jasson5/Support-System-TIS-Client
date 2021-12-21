@@ -66,37 +66,38 @@
             <div class="col-md-2"></div>
         </div>
         <app-add-offer *ngIf="viewAnnouncements"></app-add-offer>
-        <app-announcement-editor  *ngIf="viewAdvertisements"></app-announcement-editor>
-        
-        <div class="row" *ngFor="let offer of offers">
+        <app-announcement-editor *ngIf="viewAdvertisements"></app-announcement-editor>
+
+        <div class="row" *ngFor="let homeInformarion of homeInformarions">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" *ngIf="homeInformarion.statusId == 1">
                 <div class="card-home">
                     <div class="row">
                         <div class="col-sm-1">
                             <i class="fas fa-user-circle"></i>
                         </div>
                         <div class="col-sm-10 mx-2">
-                            <div>David Alejandro Escalera Fernandez</div>
-                            <div>15 Mar 2021</div>
+                            <div>{{autor}}</div>
+                            <div>{{homeInformarion.dateCreated | date:'dd MMMM yyyy'}}</div>
                         </div>
                     </div>
                     <div class="row mx-4">
                         <h3 style="text-align: center;"> <strong>Convocatoria Gestión 1-2022</strong> </h3>
-                        <p style="text-align: justify;">{{offer.description}}
+                        <p style="text-align: justify;">{{homeInformarion.description}}
                     </div>
                     <div class="row  mx-4">
                         <div class="col-md-2">
                             <h5><strong>Detalles</strong></h5>
-                            <div class="pt-2">Min Socios: {{offer.minUsers}}</div>
-                            <div>Max Socios: {{offer.maxUsers}}</div>
+                            <div class="pt-2">Min Socios: {{homeInformarion.minUsers}}</div>
+                            <div>Max Socios: {{homeInformarion.maxUsers}}</div>
                         </div>
                         <div class="col-md-8">
                             <h5 style="text-align: center;"><strong>Pliego de Especificaciones</strong></h5>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="../../../assets/images/file.png" width="100%" style="cursor: pointer;" (click)="goToLink(offer.documentOfferUrl)">
+                                    <img src="../../../assets/images/file.png" width="100%" style="cursor: pointer;"
+                                        (click)="goToLink(homeInformarion.documentUrl)">
                                 </div>
                             </div>
                         </div>
@@ -106,7 +107,30 @@
                         <div class="col-md-9"></div>
                         <div class="col-md-3">
                             <button class="btn-form btn-confirm" style="font-size: 1.1rem; width: 100%;"
-                                [routerLink]="['/add-company', offer.id]">Registar Empresa</button>
+                                [routerLink]="['/add-company', homeInformarion.id]">Registar Empresa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" *ngIf="homeInformarion.statusId == 2">
+                <div class="card-home pb-5">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="col-sm-10 mx-2">
+                            <div>{{autor}}</div>
+                            <div>{{homeInformarion.dateCreated | date: 'dd MMMM yyyy'}}</div>
+                        </div>
+                    </div>
+                    <div class="row mx-4 \">
+                        <h3 style="text-align: center;"> <strong>Anuncio</strong> </h3>
+                        <p style="text-align: justify;">{{homeInformarion.description}}
+                    </div>
+                    <div class="row" *ngIf="homeInformarion.documentUrl != null">
+                        <div class="col-md-4">
+                            <img src="../../../assets/images/file.png" width="100%" style="cursor: pointer;"
+                                (click)="goToLink(homeInformarion.documentUrl)">
                         </div>
                     </div>
                 </div>
@@ -115,3 +139,8 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: #0275d8; font-size: 20px; font-weight: bold;"> Cargando... </p>
+</ngx-spinner>

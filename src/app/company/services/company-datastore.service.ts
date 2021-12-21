@@ -16,7 +16,7 @@ export class CompanyDatastoreService {
   }
 
   update(company: Company) {
-    return this.http.patch<Company>(this.ROOT_URL + company.companyId, company);
+    return this.http.patch<Company>(this.ROOT_URL, company);
   }
 
   list(statusId) {
@@ -25,5 +25,17 @@ export class CompanyDatastoreService {
 
   findById(id) {
     return this.http.get<Company>(this.ROOT_URL + id);
+  }
+
+  public findByUserIdNSemester(userId, semesterCode){    
+    return this.http.get<Company>(this.ROOT_URL + userId +'/'+semesterCode);
+  }
+
+  delete(semesterCode) {
+    return this.http.delete<Company>(this.ROOT_URL + semesterCode);
+  }
+
+  public findCompaniesBySemester(semesterCode) {    
+    return this.http.get<Company[]>(this.ROOT_URL + 'find-by-semester/'+semesterCode);
   }
 }

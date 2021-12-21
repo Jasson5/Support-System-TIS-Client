@@ -14,12 +14,13 @@ export class AnnouncementService {
     let newAnnouncement = new Announcement();
     newAnnouncement.description = announcement.description;
     newAnnouncement.documentUrl = announcement.thumbnailUrl;
+    newAnnouncement.semester = announcement.semester;
 
     return this.announcementDatastoreService.add(newAnnouncement);
   }
 
-  public listAnnouncements() {
-    return this.announcementDatastoreService.list();
+  public listAnnouncements(code) {
+    return this.announcementDatastoreService.list(code);
   }
 }
 

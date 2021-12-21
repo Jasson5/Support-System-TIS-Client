@@ -1,34 +1,26 @@
 <div class="background">
     <div class="space">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1" *ngIf="!isAdmin"></div>
+            <div class="col-md-2" *ngIf="isAdmin">
                 <div class="row">
                     <div class="table-general">
                         <table class="table">
                             <thead class="head-table">
                                 <tr>
-                                    <th scope="col">Empresa</th>
+                                    <th scope="col">Empresas</th>
                                 </tr>
                             </thead>
-                            <tbody class="body-table">
-                                <tr >
-                                    <td>Grupo 1</td>
-                                </tr>
-                                <tr >
-                                    <td>Grupo 2</td>
-                                </tr>
-                                <tr >
-                                    <td>Grupo 3</td>
-                                </tr>
-                                <tr>
-                                    <td>Grupo 4</td>
+                            <tbody class="body-table" *ngFor="let company of companies">
+                                <tr (click)="selectCompany(company)" class="companies">
+                                    <td>{{company.shortName}}</td>
                                 </tr>
                             </tbody>  
                         </table> 
                         
                     </div>
                     <div class="row">
-                        <button class="btn-viewCompany"> Ver companias</button>
+                        <button class="btn-viewCompany" [routerLink]="['/view-companies']"> Ver companias</button>
                     </div>                       
                 </div>
             </div>
@@ -40,24 +32,21 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="btn-group">
                                 <div class="col-btn-menu" style="border-radius: 1rem 0rem 0rem 1rem;">
                                     <a class="btn-menu">Trabajo</a>
-                                </div>
-                                <div class="col-btn-menu">
-                                    <a class="btn-menu">Calendario</a>
                                 </div>
                                 <div class="col-btn-menu" style="border-radius: 0rem 1rem 1rem 0rem;">
                                     <a class="btn-menu">Asistencia</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row bg-table">
-                    <app-attendance></app-attendance>
+                    <app-attendance [company]="company" [reloadCompany]="reloadCompany.asObservable()"></app-attendance>
                 </div>
             </div>
         </div>

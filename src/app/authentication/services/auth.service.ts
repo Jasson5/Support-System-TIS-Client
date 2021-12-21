@@ -62,6 +62,10 @@ export class AuthService {
     return localStorage.getItem('userid');
   }
 
+  getSemester() {
+    return localStorage.getItem('semesterCode');
+  }
+
   getRoles() {
     var roles = localStorage.getItem('roles');
     if (roles) {

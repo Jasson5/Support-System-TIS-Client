@@ -9,25 +9,38 @@
                     <th><strong>Nombre Empresa (Corto)</strong></th>
                     <th><strong>Nombre Empresa (Largo)</strong></th>
                     <th><strong>Tipo Sociedad</strong></th>
+                    <th><strong>Semestre</strong></th>
                     <th><strong>Aprobar</strong></th>
                     <th><strong>Rechazar</strong></th>
+                    <th><strong>Detalles</strong></th>
                 </tr>
                 <tr *ngFor="let company of companies">
                     <td>{{ company.shortName}}</td>
                     <td>{{ company.longName}}</td>
                     <td>{{ company.society}}</td>
-                    <td> 
-                        <button class="view-details">
+                    <td>{{ company.semester.name }}</td>
+                    <td>
+                        <button class="view-details" (click)="approveCompany(company)">
                             <fa-icon [icon]="faCheck" class="icon-size"></fa-icon>
                         </button>
                     </td>
-                    <td> 
-                        <button class="view-details">
+                    <td>
+                        <button class="view-details" (click)="deleteCompany(company)">
                             <fa-icon [icon]="faTimes" class="icon-size"></fa-icon>
                         </button>
                     </td>
-                </tr>                         
+                    <td>
+                        <button class="view-details" (click)="viewCOmpanyDetail(company)">
+                            <fa-icon [icon]="faPlus" class="icon-size"></fa-icon>
+                        </button>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: #0275d8; font-size: 20px; font-weight: bold;"> Cargando... </p>
+</ngx-spinner>

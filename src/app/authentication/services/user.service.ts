@@ -12,9 +12,9 @@ export class UserService {
     private userDatastoreService: UserDatastoreService
   ) { }
 
-  // public findById(id) {
-  //   return this.userDatastoreService.getUserById(id);
-  // }
+   public findById(id) {
+     return this.userDatastoreService.getUserById(id);
+   }
 
   // public changePassword(user: User, credentials) {
   //   user.oldPassword = credentials.oldPassword;

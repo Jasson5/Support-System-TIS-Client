@@ -6,14 +6,14 @@
         <div class="row">
             <div class="col-md-3 home-title">
                 <div class="row">
-                    <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
+                    <h1>Empresa TIS</h1>
                 </div>
             </div>
             <div class="col-md-2 header-titles">
                 <div class="redirect" [routerLink]="['/view-pending-companies']" *ngIf="isAdmin">Solicitudes</div>
             </div>
-            <div class="col-md-2 header-titles">
-                <div class="redirect" >{{campanyName}}</div>
+            <div class="col-md-2 header-titles" >
+                <div class="redirect" [routerLink]="['/workspace']" *ngIf="isAdmin">{{companyName}}</div>
             </div>
             <div class="col-md-2 header-titles">
                 <div class="redirect" [routerLink]="['/view-companies']">Lista de Empresas</div>
@@ -29,7 +29,7 @@
                             <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
                         </button>
                         <div class="dropdown-content">
-                            <div class="redirect dropdown-option" [routerLink]="['/semesters']">Semestres</div>
+                            <div class="redirect dropdown-option" [routerLink]="['/semester-board']">Semestres</div>
                             <div class="redirect dropdown-option" (click)="logout()">Cerrar Sesion</div>
                         </div>
                     </div>
@@ -39,84 +39,6 @@
     </div>
 </div>
 
-<!--
-    Header-Initial-student
--->
-
-<div class="background"  *ngIf="false">
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 home-title">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 header-titles">
-                
-            </div>
-            <div class="col-md-2 header-titles">
-                <div class="redirect" [routerLink]="['/view-companies']">Lista de Empresas</div>
-            </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-8 header-titles">
-                        <div>{{userName}}</div>
-                    </div>
-                    <div class="col-md-4 icon-logo text-center dropdown">
-                        <button class="view-user-details">
-                            <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
-                        </button>
-                        <div class="dropdown-content">
-                            <div class="redirect dropdown-option" (click)="logout()">Cerrar Sesion</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--
-    Header-role-student
--->
-
-<div class="background"  *ngIf="false">
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 home-title">
-                <div class="row">
-                    <h1 class="redirect" [routerLink]="['/home']">Empresa TIS</h1>
-                </div>
-            </div>
-            <div class="col-md-2 header-titles">
-                <div class="redirect" >Mi Empresa</div>
-            </div>
-            <div class="col-md-2 header-titles">
-                <div class="redirect" [routerLink]="['/view-companies']">Lista de Empresas</div>
-            </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-8" style="text-align: center; font-size: 1.2rem; padding-top: 1.5vh;">
-                        <div>{{userName}}</div>
-                        <div>{{userRole}}</div>
-                    </div>
-                    <div class="col-md-4 icon-logo text-center dropdown">
-                        <button class="view-user-details">
-                            <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
-                        </button>
-                        <div class="dropdown-content">
-                            <div class="redirect dropdown-option" (click)="logout()">Cerrar Sesion</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--
     Header-landing-page

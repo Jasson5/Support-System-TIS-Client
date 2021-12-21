@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
@@ -13,13 +14,12 @@ import { UserService } from '../../services/user.service';
 export class RegisterUserComponent implements OnInit {
   public sendRegisterForm: FormGroup;
   public user: User;
-  public response;
-  public isLoading;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private auth: AuthService,
+    private spinner: NgxSpinnerService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -31,39 +31,30 @@ export class RegisterUserComponent implements OnInit {
     this.sendRegisterForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['', [Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])[A-Za-z\\d!$%@#£€*?&]{6,}$')]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
     }, { validator: this.passwordMatchValidator("password", "confirmPassword") }
     );
   }
 
-  alertToaster() {
-    var x = document.getElementById("snackbar");
-    x.className = "show";
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-  }
 
-  register() {
-    this.isLoading = true;
+  register() {    
+    this.spinner.show();
     var user = this.sendRegisterForm.value;
     this.userService.RegisterUser(user).subscribe(() => {
-      this.sendRegisterForm.reset();
-      this.buildForm();
-      this.response = "Cuenta creada exitosamente.";
-      this.alertToaster();
       this.auth.login(user.email, user.password).subscribe(
         () => {
-          this.isLoading = false;
-          this.router.navigate(['/home']).finally(() => {
+          this.router.navigate(['/semester-board']).finally(() => {
+            this.spinner.hide();
             location.reload();
           });
 
         });
     },
       error => {
-        this.response = error.error.error.message;
-        this.alertToaster();
+        this.spinner.hide();
+        alert(error.error.error.message);
       });
   }
 

@@ -1,6 +1,6 @@
 .background {
     background-color: #334756;
-    height: 90vh;
+    min-height: 90vh;
 }
 
 .table-general{
@@ -49,7 +49,7 @@
 
 .col-btn-menu{
     float: left;
-    width: 33.334%;
+    width: 50%;
     padding: 0;
     background-color: white;
     text-align: center;
@@ -94,7 +94,7 @@
     background-color: #f0a500;
     color: white;
 
-    width: 250px;
+    width: 200px;
     margin-left: 2.1rem;
 
 }	
@@ -105,4 +105,13 @@
     height: 580px;
     width: 98%;
     padding: 0.5rem;
+}
+
+.companies{
+    cursor: pointer;
+}
+
+.companies:hover{
+    color: white;
+    background-color: #f0a500;
 }

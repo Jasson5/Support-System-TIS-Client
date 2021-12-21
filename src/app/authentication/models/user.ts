@@ -14,5 +14,6 @@ export class User {
     givenName: string;
     isEnabled: Boolean;
     roles: Role[];
+    role: string;
     semesters: Semester[];
 }

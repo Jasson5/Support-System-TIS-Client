@@ -16,7 +16,7 @@ export class AnnouncementDatastoreService {
     return this.http.post<Offer>(this.ROOT_URL, announcement);
   }
 
-  list() {
-    return this.http.get<Announcement[]>(this.ROOT_URL);
+  list(code) {
+    return this.http.get<Announcement[]>(this.ROOT_URL + code);
   }
 }

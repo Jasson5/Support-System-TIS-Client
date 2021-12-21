@@ -10,7 +10,7 @@
                 <div class="col-sm-8">
                     <h4>Publicar Convocatoria</h4>
                 </div>
-                <form [formGroup]="offerEditorForm">
+                <form [formGroup]="offerEditorForm" (ngSubmit)="AddOffer()">
                     <div class="form-group row">
                         <label for="description" class="col-sm-4 col-form-label">Descripción: </label>
                         <div class="col-sm-8">
@@ -22,16 +22,19 @@
                         <label for="date" class="col-sm-4 col-form-label">Fecha Fin: </label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input class="form-control" placeholder="dd-mm-yyyy"  formControlName="dateEnd"
+                                <input class="form-control" placeholder="dd-mm-yyyy" formControlName="dateEnd"
                                     ngbDatepicker #d1="ngbDatepicker" readonly="readonly" container="body">
                                 <div class="input-group-append" style="height:2.2rem;">
-                                    <i class="fas fa-calendar-week" (click)="d1.toggle()"  style="font-size: 1.5rem;"></i>                                   
+                                    <i class="fas fa-calendar-week" (click)="d1.toggle()"
+                                        style="font-size: 1.5rem;"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="fileupload" class="col-sm-4 col-form-label">Adjuntar Archivos: </label>
+                        <label for="fileupload" class="col-sm-4 col-form-label">Adjuntar Archivos: <br>
+                            <div style=" font-family: 'Monserrat', bold;">(Tamaño max: 5mb)</div>
+                        </label>
                         <div class="col-sm-8">
                             <div class="file-drop-area">
                                 <i class="far fa-file-pdf pdf" (click)="fileInput.click()"></i>
@@ -42,10 +45,13 @@
                                     (change)="onFileChange($event)" #fileInput>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <div *ngIf="thumbnailData">
-                                        <img *ngIf="thumbnailData" [src]="thumbnailData" height="200"><br /><br />
+                                        <input value="{{file.name}}" disabled style="width: 100%;">
+                                        
                                     </div>
+                                </div>
+                                <div class="col-md-4">
                                     <button *ngIf="thumbnailData" type="button" (click)="removeFile()"
                                         class="btn-sm">Remover</button>
                                 </div>
@@ -56,11 +62,13 @@
                         <label for="bspartner" class="col-sm-4 col-form-label">Cantidad de Socios: </label>
                         <label for="minpar" class="col-sm-2 col-form-label">Minima: </label>
                         <div class="col-sm-2">
-                            <input type="text" class="col-sm-2 form-control" name="minpar" id="minpar"  formControlName="minUsers">
+                            <input type="text" class="col-sm-2 form-control" name="minpar" id="minpar"
+                                formControlName="minUsers">
                         </div>
                         <label for="maxpar" class="col-sm-2 col-form-label">Maxima: </label>
                         <div class="col-sm-2">
-                            <input type="text" class="col-sm-2 form-control" name="maxpar" id="maxpar"  formControlName="maxUsers">
+                            <input type="text" class="col-sm-2 form-control" name="maxpar" id="maxpar"
+                                formControlName="maxUsers">
                         </div>
 
                     </div>
@@ -72,8 +80,9 @@
                             <button class="btn-form btn-cancel" (click)="cancel()">Cancelar</button>
                         </div>
                         <div class="col-md-3">
-                            <button class="btn-form btn-confirm" type="submit"
-                               (click)="AddOffer()">Aceptar</button>
+                            <button class="btn-form btn-confirm" type="submit" status="success"
+                                [ngStyle]="{'background-color': (offerEditorForm.valid && file != undefined) ? '#f0a500' : '#FCCA5E'}"
+                                [disabled]="!offerEditorForm.valid">Aceptar</button>
                         </div>
                     </div>
                 </form>

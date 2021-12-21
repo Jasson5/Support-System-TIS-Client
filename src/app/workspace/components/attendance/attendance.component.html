@@ -1,66 +1,86 @@
 <div class="general">
-  <table class="table" >  
-      <thead class="head-table">
-          <tr >
-              <th>Horario</th>
-              <th *ngFor='let student of schedules[0].listStudents;index as i' style="width: 130px;">
-                  <div *ngIf='i%2==0'>
-                      {{student.name}}
-                  </div>
-                  <div *ngIf='i%2!=0' style="width: 120px;">
-                      Nota
-                  </div>
-              </th>
-              <th>Anotaciones</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let schedule of schedules">
-              <td >{{schedule.schedule}}</td>
-              <td class="student" *ngFor='let student of schedule.listStudents;index as i'>
-                  <div *ngIf='i%2==0'>
-                      {{student.attendance}}
-                  </div>
-                  <div *ngIf='i%2!=0'>
-                      {{student.grade}}
-                  </div>
-              </td>
+    <table class="table">
+        <thead class="head-table">
+            <tr>
+                <th>Horario</th>
+                <th *ngFor='let student of company?.members' style="width: auto;">
+                    <div class="row px-3">
+                        <div style="float: left; width: 200px;">
+                            {{student.givenName}}
+                        </div>
+                        <div style="float: left; width: 100px;">
+                            Nota
+                        </div>
+                    </div>
+                </th>
+                <th>Anotaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let attendance of groupAttendances; index as i'>
+              <td >{{groupAttendances.date[0].attendanceDate | date: 'dd/MM/yyyy'}}</td>
+              <!-- <td class="student" *ngFor='let student of company?.members'>
+                <div class="row px-3">
+                    <div style="float: left; width: 200px;">
+                        {{student.givenName}}
+                    </div>
+                    <div style="float: left; width: 100px;">
+                        Nota
+                    </div>
+                </div>
+              </td> -->
               <td><a class="view">Visualizar</a></td>
           </tr>
           <tr>
-              <td>Jueves 16 Dic, 2021, 07:00-07:30</td>
-              <td class="student" *ngFor='let student of schedules[0].listStudents;index as i'>
-                  <div *ngIf='i%2==0'>
-                      <select class="comboBox">
-                          <option value="Presente">Presente</option>
-                          <option value="Tarde">Tarde</option>
-                          <option value="Inasistencia">Inasistencia</option>
-                      </select>
-                  </div>
-                  <div *ngIf='i%2!=0'>
-                      <input type="text" placeholder="Nota" class="notaSemanal"/>
-                  </div>
-              </td>
-              <td><a class="view">Visualizar</a></td>
+              <button class="btn btn-primary"style="background-color: blue;"(click)="createNewAttendance()">Crear nueva asistencia</button>
           </tr>
-          <tr>
-              <td class="total">Total</td>
-              <td class="student" *ngFor='let student of schedules[0].listStudents;index as i' style="vertical-align: middle;"> 
-                  <div *ngIf='i%2==0' style="text-align: left;">
-                      <p>Presente: 4</p><br>
-                      <p>Tarde: 5</p><br>
-                      <p>Inasistencia: 19</p><br>
-                  </div>
-                  <div *ngIf='i%2!=0'>
-                      <input placeholder="Nota" class="notaSemanal" />
-                  </div>
-              </td>
-          </tr>
-      </tbody>
-  </table>
+            <tr *ngIf="newAttendance"> 
+                <td>{{ date | date: 'dd/MM/yyyy'}}</td>
+                <td class="student" *ngFor='let student of company?.members'>
+                    <div class="row px-3">
+                        <form [formGroup]="attendanceEditorForm" (ngSubmit)="addAttendance(student)">
+                            <div style="float: left; width: 200px;">
+                                <select class="comboBox" formControlName="status">
+                                    <option value="Presente">Presente</option>
+                                    <option value="Tarde">Tarde</option>
+                                    <option value="Inasistencia">Inasistencia</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="float: left; width: 100px;">
+                                <input type="text" class="form-control" formControlName="grade" placeholder="Nota" class="notaSemanal" />
+                            </div>
 
-  <table class="table-sec">
-      <thead class="head-table">
+                            <div style="float: left; width: auto;">
+                                <button type="submit" class="submit save-attendance">
+                                    <fa-icon [icon]="faSave" class="icon-size"></fa-icon>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+                <td><a class="view">Visualizar</a></td>
+            </tr>
+            <tr>
+                <td class="total">Total</td>
+                <td class="student" *ngFor='let student of company?.members' style="vertical-align: middle;">
+                    <div class="row px-3">
+                        <div style="float: left; width: 200px;">
+                            <p>Presente: 4</p><br>
+                            <p>Tarde: 5</p><br>
+                            <p>Inasistencia: 19</p><br>
+                        </div>
+                        <div style="float: left; width: 100px;">
+                            <input placeholder="Nota" class="notaSemanal" disabled />
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table-sec">
+        <!-- <thead class="head-table">
           <tr >
               <th class="th-normal"></th>
               <th *ngFor='let student of onlyStudents' style="width: 200;">
@@ -75,7 +95,7 @@
                   <input placeholder="Nota"/>
               </td>
           </tr>
-      </tbody>
-  </table>
+      </tbody> -->
+    </table>
 
 </div>

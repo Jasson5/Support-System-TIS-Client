@@ -47,7 +47,12 @@
                             </div>
 
                             <div class="row py-2">
-                                <label><strong>Miembros</strong></label>
+                                <label><strong>Miembros ({{offer?.minUsers}} - {{offer?.maxUsers}})</strong></label>                                
+                                <div class="row my-2" *ngIf="me!=null">
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control " disabled value="{{me}}">
+                                    </div>
+                                </div>
                                 <div *ngFor="let userSelected of usersSelected">
                                     <div class="row my-2">
                                         <div class="col-md-8">
@@ -60,7 +65,12 @@
                                             </button>
                                         </div>
                                     </div>
-
+                                </div>
+                                <div class="alert text-danger" *ngIf="usersSelected.length+1 < offer?.minUsers">
+                                    La cantidad minima de miembros es de {{offer?.minUsers}} 
+                                </div>
+                                <div class="alert text-danger" *ngIf="usersSelected.length > offer?.maxUsers">
+                                    La cantidad maxima de miembros es de {{offer?.maxUsers}}
                                 </div>
                             </div>
                         </form>
@@ -105,3 +115,8 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: #0275d8; font-size: 20px; font-weight: bold;"> Cargando... </p>
+</ngx-spinner>

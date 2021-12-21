@@ -25,14 +25,15 @@ import { AddOfferComponent } from './offer/components/add-offer/add-offer.compon
 import { OfferModule } from './offer/offer.module';
 import { httpInterceptorProviders } from './authentication/http-interceptors';
 import { SemesterModule } from './semester/semester.module';
-
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
     LanfingPageComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +56,7 @@ import { SemesterModule } from './semester/semester.module';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [httpInterceptorProviders],  
-  entryComponents: [AddOfferComponent],
+  entryComponents: [AddOfferComponent,ConfirmationModalComponent],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,14 +9,16 @@
                     <th><strong>Nombre Empresa (Corto)</strong></th>
                     <th><strong>Nombre Empresa (Largo)</strong></th>
                     <th><strong>Tipo Sociedad</strong></th>
+                    <th><strong>Semestre</strong></th>
                     <th><strong>Detalles</strong></th>
                 </tr>
                 <tr *ngFor="let company of companies">
                     <td>{{ company.shortName}}</td>
                     <td>{{ company.longName}}</td>
                     <td>{{ company.society}}</td>
+                    <td>{{ company.semester.name }}</td>
                     <td> 
-                        <button class="view-details">
+                        <button class="view-details" (click)="viewCOmpanyDetail(company)">
                             <fa-icon [icon]="faPlus" class="icon-size"></fa-icon>
                         </button>
                     </td>

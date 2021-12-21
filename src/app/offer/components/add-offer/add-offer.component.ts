@@ -58,28 +58,35 @@ export class AddOfferComponent implements OnInit {
 
   AddOffer() {
     var offer = this.offerEditorForm.value;
-    var component = this;
-
-    this.uploadService.uploadFile(this.file, this.folderName)
-      .then(function (data) {
-        offer.thumbnailUrl = data.Location;
-        component.sendOfferData(offer);
-      })
-      .catch(function (error) {
-        console.log('There was an error uploading your file: ', error);
-        component.spinner.hide();
-      });
+    if(offer.minUsers <= offer.maxUsers) {
+      this.spinner.show();
+      var component = this;
+      this.uploadService.uploadFile(this.file, this.folderName)
+        .then(function (data) {
+          offer.thumbnailUrl = data.Location;
+          component.sendOfferData(offer);
+        })
+        .catch(function (error) {
+          console.log('There was an error uploading your file: ', error);
+          this.spinner.hide();
+        });
+    }else{
+      alert("El minimo de miembros no puede ser mayor al maximo de miembros");
+    }    
   }
 
   sendOfferData(offer) {
     this.semesterService.FindSemesterByCode(this.semesterCode).subscribe(semester => {
       offer.dateEnd = new Date(offer.dateEnd.year, offer.dateEnd.month - 1, offer.dateEnd.day);
       this.offerService.addOffer(offer, semester).subscribe(() => {
+        this.spinner.hide();
+        location.reload();
       });
     });
   }
 
   cancel() {
+    location.reload();
   }
 
   onFileChange(event) {

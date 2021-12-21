@@ -21,12 +21,12 @@ export class CompanyService {
     return this.companyDatastoreService.add(newCompany);
   }
 
-  public updateCompany(companyToEdit: Company, company) {
-    // companyToEdit.name = company.name;
-    // companyToEdit.phone = company.phone;
-    // companyToEdit.email = company.email;
-    // companyToEdit.adress = company.adress;
-
+  public approveCompany(company) {
+    let companyToEdit= new Company();
+    companyToEdit.shortName = company.shortName;
+    companyToEdit.longName = company.longName;
+    companyToEdit.society = company.society;
+    companyToEdit.cmpanyStatus = company.cmpanyStatus;
     return this.companyDatastoreService.update(companyToEdit);
   }
 
@@ -36,5 +36,17 @@ export class CompanyService {
 
   public findById(id) {
     return this.companyDatastoreService.findById(id);
+  }
+
+  public deleteCompany(semesterCode) {
+    return this.companyDatastoreService.delete(semesterCode);
+  }
+
+  public findByUserIdNSemester(userId, semesterCode) {    
+    return this.companyDatastoreService.findByUserIdNSemester(userId, semesterCode);
+  }
+
+  public findCompaniesBySemester(semesterCode) {    
+    return this.companyDatastoreService.findCompaniesBySemester(semesterCode);
   }
 }

@@ -5,7 +5,7 @@
 
 .card{
     margin-top: 1rem;
-    height: 72vh;
+    min-height: 72vh;
     border-radius: 2rem;
 }
 
@@ -51,7 +51,7 @@ a{
 }
 .btn-oran{
     background-color: #F0A500;
-    
+    width: 95%;
     margin-top: 1rem;
     font-size: 30px;
     font-weight: bold;

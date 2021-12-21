@@ -6,27 +6,67 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <form [formGroup]="sendRegisterForm">
+                        <form [formGroup]="sendRegisterForm" (ngSubmit)="register()">
                             <h2>Registrarse</h2>
                             <div>
                                 <input type="text" placeholder="Nombres" formControlName="name">
                             </div>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert text-danger">
+                                <div *ngIf="name.errors.required">
+                                    El nombre es requerido.
+                                </div>
+                            </div>
                             <div>
                                 <input type="text" placeholder="Apellidos" formControlName="lastName">
                             </div>
+                            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                class="alert text-danger">
+                                <div *ngIf="lastName.errors.required">
+                                    El apellido es requerido.
+                                </div>
+                            </div>
                             <div>
                                 <input type="text" placeholder="Correo Institucional UMSS" formControlName="email">
-                            </div>   
+                            </div>
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert text-danger">
+                                <div *ngIf="email.errors.required">
+                                    El email es requerido.
+                                </div>
+                                <div *ngIf="email.errors.email">
+                                    El email es invalido.
+                                </div>
+                            </div>
                             <div>
                                 <input type="password" placeholder="Contraseña" formControlName="password">
                             </div>
-                            <div>
-                                <input id="confirmPassword" type="password" class="form-control" placeholder="confirmPassword" 
-                                    [ngClass]="{'is-invalid':sendRegisterForm.get('confirmPassword').errors && sendRegisterForm.get('confirmPassword').touched}"
-                                    formControlName="confirmPassword">
+                            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                class="alert text-danger">
+                                <div *ngIf="password.errors.required">
+                                    ·La contraseña es requerida.
+                                </div>
+                                <div *ngIf="password.errors.maxlength">
+                                    ·La contraseña debe tener un máximo de 100 caracteres.
+                                </div>
+                                <div *ngIf="password.errors.minlength">
+                                    ·La contraseña debe tener al menos 6 caracteres.
+                                </div>
+                                <div *ngIf="password.errors.pattern">
+                                    ·La contraseña debe tener al menos una letra MAYÚSCULA y una letra minúscula.
+                                </div>
                             </div>
                             <div>
-                                <a (click)="register()" class="btn btn-oran">Ingresar</a>
+                                <input id="confirmPassword" type="password" class="form-control"
+                                    placeholder="confirmPassword"
+                                    [ngClass]="{'is-invalid':sendRegisterForm.get('confirmPassword').errors && sendRegisterForm.get('confirmPassword').touched}"
+                                    formControlName="confirmPassword">
+                                <div class="invalid-feedback"
+                                    *ngIf="sendRegisterForm.get('confirmPassword').hasError('passwordMismatch')">
+                                    Las contraseñas no coinciden.</div>
+                            </div>
+                            <div>
+                                <button id="liveToastBtn" fullWidth class="btn btn-oran" status="success"
+                                    [disabled]="!sendRegisterForm.valid">Ingresar</button>
+
                             </div>
                             <div>
                                 <a [routerLink]="['/login']">Ya tienes una cuenta?</a>
@@ -40,3 +80,7 @@
         </div>
     </div>
 </div>
+<ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: #0275d8; font-size: 20px; font-weight: bold;"> Cargando... </p>
+</ngx-spinner>
