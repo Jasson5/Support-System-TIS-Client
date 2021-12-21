@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Attendance } from 'src/app/models/attendance';
+import { GradeAverage } from 'src/app/models/grade-average';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,5 +17,9 @@ export class AttendanceDatastoreService {
 
   list(companyName) {
     return this.http.get<Attendance[]>(this.ROOT_URL + 'find-by-company/' + companyName);
+  }
+
+  listGradeByCompany(companyName) {
+    return this.http.get<GradeAverage[]>(this.ROOT_URL + 'grade-by-company/' + companyName);
   }
 }

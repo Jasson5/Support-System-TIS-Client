@@ -22,4 +22,8 @@ export class AttendanceService {
   public listAttendancesByCompanyName(companyName) {
     return this.attendanceDatastoreService.list(companyName);
   }
+
+  public listGradeByCompany(companyName) {
+    return this.attendanceDatastoreService.listGradeByCompany(companyName);
+  }
 }
