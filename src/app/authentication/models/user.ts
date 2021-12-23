@@ -1,4 +1,5 @@
 
+import { FinalGrade } from 'src/app/models/final-grade';
 import { Semester } from '../../models/semester';
 import { Role } from './role'
 
@@ -16,4 +17,5 @@ export class User {
     roles: Role[];
     role: string;
     semesters: Semester[];
+    finalGrade: FinalGrade;
 }

@@ -1,1 +1,24 @@
-<p>calendar works!</p>
+<div style="text-align: right; background-color: white;">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close(false)">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="container">
+    <form [formGroup]="calendarEditorForm" (ngSubmit)="saveChanges()">
+        <div class="row">
+            <strong>Lo que se reviso</strong>
+            <div class="container">
+                <textarea style="width:100%; min-height:100px" formControlName="description"></textarea>
+            </div>
+        </div>
+        <div class="row py-2">
+            <strong>Lo que se revisara</strong>
+            <div class="container">
+                <textarea style="width:100%; min-height:100px" formControlName="observation"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary mr-2">Guardar Cambios</button>
+        </div>
+    </form>
+</div>

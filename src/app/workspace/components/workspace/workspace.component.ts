@@ -13,7 +13,8 @@ export class WorkspaceComponent implements OnInit {
   public companyName = "Selecciones una empresa"
   public isAdmin;
   public companies: Company[] = [];
-  public company: Company = null;  
+  public companiesForUser: Company[] = [];
+  public company: Company = null;
   public reloadCompany: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -23,13 +24,29 @@ export class WorkspaceComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.auth.getRoles().includes('Admin');
-    this.companyService.findCompaniesBySemester(this.auth.getSemester()).subscribe((company) => {
-      this.companies = company;
-
-    })
+    this.listCompanies();
   }
 
-  selectCompany(company){
+  listCompanies() {
+    if (this.isAdmin) {
+      this.companyService.findCompaniesBySemester(this.auth.getSemester()).subscribe((company) => {
+        this.companies = company;
+      })
+    } else {
+      this.companyService.findCompaniesBySemester(this.auth.getSemester()).subscribe((companies) => {
+        this.companiesForUser = companies;
+        this.companiesForUser.forEach((company) => {
+          if(company.members.find(cm => cm.id == parseInt(this.auth.getUserId()))){
+            this.companies.push(company);
+          }
+
+        })
+      })
+    }
+
+  }
+
+  selectCompany(company) {
     this.company = company;
     this.companyName = company.longName;
     this.reloadCompany.next(true);

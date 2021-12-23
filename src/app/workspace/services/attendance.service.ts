@@ -12,6 +12,7 @@ export class AttendanceService {
   public addAttendance(attendance, user) {
     let newAttendance = new Attendance();
     newAttendance.attendanceStatus = attendance.attendanceStatus;
+    newAttendance.attendanceDate = attendance.attendanceDate;
     newAttendance.attendanceGrade = attendance.grade;
     newAttendance.user = user;
     newAttendance.companyName = attendance.companyName;

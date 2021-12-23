@@ -8,11 +8,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AttendanceStatusPipe } from './pipes/attendance-status.pipes';
 
 
 
 @NgModule({
-  declarations: [WorkspaceComponent, HomeworksComponent, CalendarComponent, AttendanceComponent],
+  declarations: [WorkspaceComponent, HomeworksComponent, CalendarComponent, AttendanceComponent, AttendanceStatusPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,5 +25,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   exports:[
     AttendanceComponent
   ],
+  providers: [AttendanceStatusPipe]
 })
 export class WorkspaceModule { }

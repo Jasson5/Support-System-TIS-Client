@@ -27,15 +27,15 @@ export class CompanyDatastoreService {
     return this.http.get<Company>(this.ROOT_URL + id);
   }
 
-  public findByUserIdNSemester(userId, semesterCode){    
-    return this.http.get<Company>(this.ROOT_URL + userId +'/'+semesterCode);
+  public findByUserIdNSemester(userId, semesterCode) {
+    return this.http.get<Company>(this.ROOT_URL + 'user-and-company' + userId + '/' + semesterCode);
   }
 
   delete(semesterCode) {
     return this.http.delete<Company>(this.ROOT_URL + semesterCode);
   }
 
-  public findCompaniesBySemester(semesterCode) {    
-    return this.http.get<Company[]>(this.ROOT_URL + 'find-by-semester/'+semesterCode);
+  public findCompaniesBySemester(semesterCode) {
+    return this.http.get<Company[]>(this.ROOT_URL + 'find-by-semester/' + semesterCode);
   }
 }
