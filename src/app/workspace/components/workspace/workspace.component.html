@@ -20,7 +20,10 @@
                     </div>
                     <div class="row">
                         <button class="btn-viewCompany" [routerLink]="['/view-companies']"> Ver companias</button>
-                    </div>                       
+                    </div>     
+                    <div class="row">
+                        <button class="btn-viewCompany" (click)="generateReport()">Aprobados</button>
+                    </div>                    
                 </div>
             </div>
     
@@ -51,3 +54,8 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: #0275d8; font-size: 20px; font-weight: bold;"> Cargando... </p>
+</ngx-spinner>

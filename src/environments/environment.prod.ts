@@ -8,5 +8,6 @@ export const environment = {
   S3_ENDPOINT: 'nyc3.digitaloceanspaces.com',
   BUCKET_NAME: 'docforsis-client',
   ROLES: 'Admin,Student',
-  LOGO_URL: '../assets/images/logo-in-black.png'
+  LOGO_URL: '../assets/images/logo-in-black.png',  
+  SERVERLESS_DEPLOY: true,
 };

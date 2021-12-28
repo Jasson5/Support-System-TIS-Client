@@ -68,15 +68,15 @@
             </tr>
             <tr>
                 <td class="total">Total</td>
-                <td class="student" *ngFor='let ga of gradeAverages' style="vertical-align: middle;">
+                <td class="student" *ngFor='let student of company?.members' style="vertical-align: middle;">
                     <div class="row px-3">
                         <div style="float: left; width: 70%;">
-                            <p>Presente: {{ga.presentes}}</p><br>
-                            <p>Tarde: {{ga.tardes}}</p><br>
-                            <p>Inasistencia: {{ga.inasistencias}}</p><br>
+                            <p>Presente: {{student.gradeAverage?.presentes}}</p><br>
+                            <p>Tarde: {{student.gradeAverage?.tardes}}</p><br>
+                            <p>Inasistencia: {{student.gradeAverage?.inasistencias}}</p><br>
                         </div>
                         <div style="float: left; width: 30%;">
-                            <input placeholder="Nota" class="notaSemanal" disabled value="{{ga.gradeAverage}}" />
+                            <input placeholder="Nota" class="notaSemanal" disabled value="{{student.gradeAverage?.gradeAverage}}" />
                         </div>
                     </div>
 

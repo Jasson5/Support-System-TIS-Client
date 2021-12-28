@@ -93,6 +93,9 @@ export class AttendanceComponent implements OnInit {
       this.groupAttendances = this.agrupar(this.attendances);
       this.attendanceService.listGradeByCompany(this.company.shortName).subscribe(gradeAverage => {
         this.gradeAverages = gradeAverage;
+        this.company.members.forEach(cm => {
+          cm.gradeAverage = this.gradeAverages.find(g => g.id == cm.id);
+        });
         this.finalGradeService.listFinalGrade(this.company.shortName).subscribe(finalGrade => {
           this.finalGrades = finalGrade;
           this.company.members.forEach(cm => {

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/authentication/services/auth.service';
 import { CompanyService } from 'src/app/company/services/company.service';
 import { Company } from 'src/app/models/company';
+import { PdfService } from 'src/app/services/pdf.service';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-workspace',
@@ -19,7 +22,10 @@ export class WorkspaceComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private reportService: ReportService,    
+    private spinner: NgxSpinnerService,
+    private pdfService: PdfService
   ) { }
 
   ngOnInit(): void {
@@ -50,5 +56,17 @@ export class WorkspaceComponent implements OnInit {
     this.company = company;
     this.companyName = company.longName;
     this.reloadCompany.next(true);
+  }
+
+  generateReport(){
+    this.spinner.show();
+    this.reportService.getPdf(this.auth.getSemester()).subscribe(pdf => {
+      this.pdfService.Open(pdf);
+      this.spinner.hide();
+    },
+      (error) => {
+        alert(error.message);
+        this.spinner.hide();
+      });
   }
 }

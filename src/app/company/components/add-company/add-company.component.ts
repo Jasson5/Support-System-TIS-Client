@@ -122,16 +122,21 @@ export class AddCompanyComponent implements OnInit {
       this.myAccount.roles = roles;
       this.usersSelected.push(this.myAccount);
     }
-    this.semesterService.FindSemesterByCode(this.offer.semester.code).subscribe(semester => {
-      this.companyService.addCompany(company, this.usersSelected, semester).subscribe(() => {
-        this.spinner.hide();
-        this.router.navigate(['/home', this.offer.semester.code])
-      },
-        error => {
+    if (this.usersSelected.length >= this.offer.minUsers) {
+      this.semesterService.FindSemesterByCode(this.offer.semester.code).subscribe(semester => {
+        this.companyService.addCompany(company, this.usersSelected, semester).subscribe(() => {
           this.spinner.hide();
-          alert(error.error.error.message)
-        });
-    })
+          this.router.navigate(['/home', this.offer.semester.code])
+        },
+          error => {
+            this.spinner.hide();
+            alert(error.error.error.message)
+          });
+      })
+    }else {
+      alert("El minimo de usuarios es: " + this.offer.minUsers );
+      this.spinner.hide();
+    }
   }
 
   get companyShortName() {
