@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FinalGrade } from 'src/app/models/final-grade';
+import { FinalGradeBySemester } from 'src/app/models/final-grade-by-semester';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,6 +13,10 @@ export class FinalGradeDatastoreService {
 
   list(companyName) {
     return this.http.get<FinalGrade[]>(this.ROOT_URL + companyName);
+  }
+
+  listBySemester(semester) {
+    return this.http.get<FinalGradeBySemester[]>(this.ROOT_URL +'by-semester/' + semester);
   }
 
   update(finalGrade: FinalGrade) {

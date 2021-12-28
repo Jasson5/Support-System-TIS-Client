@@ -12,6 +12,7 @@ import { LanfingPageComponent } from './components/lanfing-page/lanfing-page.com
 import { EditCompanyComponent } from './company/components/edit-company/edit-company.component';
 import { WorkspaceComponent } from './workspace/components/workspace/workspace.component';
 import { AttendanceComponent } from './workspace/components/attendance/attendance.component';
+import { ApprovedStudentsComponent } from './workspace/components/approved-students/approved-students.component';
 
 const routes: Routes = [
   { path: '', component: LanfingPageComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'workspace', component: WorkspaceComponent },
   { path: 'edit-company', component: EditCompanyComponent },
   { path: 'semester-board', component: SemestersComponent},
+  { path: 'approved-students', component: ApprovedStudentsComponent},
   { path: 'asistencia', component: AttendanceComponent}
 ];
 

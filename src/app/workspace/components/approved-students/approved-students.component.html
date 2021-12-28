@@ -1,0 +1,21 @@
+<div class="background">
+    <div class="container">
+        <div class="text-center py-4">
+            <h1 style="color: white;">{{finalGrades[0]?.name}}</h1>
+        </div>
+        <div class="py-2" style="height:29rem; overflow:auto;">
+            <table style="width: 100%; text-align: center; background-color: white;">
+                <tr style="background-color: #f0a500;">
+                    <th><strong>Estudiante</strong></th>
+                    <th><strong>Empresa</strong></th>
+                    <th><strong>Nota</strong></th>
+                </tr>
+                <tr *ngFor="let finalGrade of finalGrades">
+                    <td>{{ finalGrade.givenName}}</td>
+                    <td>{{ finalGrade.shortName}}</td>
+                    <td>{{ finalGrade.grade}}</td>
+                </tr>                        
+            </table>
+        </div>
+    </div>
+</div>

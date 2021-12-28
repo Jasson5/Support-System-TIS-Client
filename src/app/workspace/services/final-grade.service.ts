@@ -18,4 +18,8 @@ export class FinalGradeService {
   public listFinalGrade(companyName) {
     return this.finalGradeDatastoreService.list(companyName);
   }
+
+  public listFinalGradeBySemester(semesterCode) {
+    return this.finalGradeDatastoreService.listBySemester(semesterCode);
+  }
 }

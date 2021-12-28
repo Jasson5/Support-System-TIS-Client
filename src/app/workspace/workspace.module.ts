@@ -9,11 +9,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AttendanceStatusPipe } from './pipes/attendance-status.pipes';
+import { ApprovedStudentsComponent } from './components/approved-students/approved-students.component';
 
 
 
 @NgModule({
-  declarations: [WorkspaceComponent, HomeworksComponent, CalendarComponent, AttendanceComponent, AttendanceStatusPipe],
+  declarations: [WorkspaceComponent, HomeworksComponent, CalendarComponent, AttendanceComponent, AttendanceStatusPipe, ApprovedStudentsComponent],
   imports: [
     CommonModule,
     FormsModule,
