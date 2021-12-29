@@ -1,91 +1,111 @@
-<div class="general" *ngIf="show">
-    <table class="table">
-        <thead class="head-table">
-            <tr>
-                <th>Horario</th>
-                <th *ngFor='let student of company?.members' style="width: auto;">
-                    <div class="row px-3">
-                        <div style="float: left; width: 70%;">
-                            {{student.givenName}}
-                        </div>
-                        <div style="float: left; width: 30%;">
-                            Nota
-                        </div>
-                    </div>
-                </th>
-                <th>Anotaciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let attendances of groupAttendances'>
-                <td>{{attendances.fecha | date: 'dd/MM/yyyy'}}</td>
-                <td class="student" *ngFor='let attendance of attendances.listStudent; let i = index'>
-                    <div class="row px-3">
-                        <div style="float: left; width: 70%">
-                            <select class="comboBox" disabled>
-                                <option value="Presente">{{attendance.attendanceStatus | attendanceStatus}}</option>
-                            </select>
-                        </div>
-                        <div style="float: left; width: 30%;">
-
-                            {{attendance.attendanceGrade}}
-                        </div>
-                    </div>
-                </td>
-                <td><a class="view" (click)="open(attendances.fecha)">Visualizar</a></td>
-            </tr>
-            <tr *ngIf="!viewNewAttendance && isAdmin">
-                <button class="btn btn-newAttendance" (click)="createNewAttendance()">
-                    <fa-icon [icon]="faPlus" class="icon-size"></fa-icon> Crear nueva asistencia
-                </button>
-            </tr>
-            <tr *ngIf="viewNewAttendance && isAdmin" class="pt-2">
-                <td>{{ date | date: 'dd/MM/yyyy'}}</td>
-                <td class="student" *ngFor='let student of company?.members'>
-                    <div class="row px-3">
-                        <form [formGroup]="attendanceEditorForm" (ngSubmit)="addAttendance(student)">
+<div class="general row" *ngIf="show">
+    <div class="col-md-10" style="height: 300px;">
+        <table class="table" style="height: 300px;">
+            <thead class="head-table">
+                <tr>
+                    <th>Horario</th>
+                    <th *ngFor='let student of company?.members' style="width: auto;">
+                        <div class="row px-3">
                             <div style="float: left; width: 70%;">
-                                <select class="comboBox" formControlName="status">
-                                    <option value="Presente">Presente</option>
-                                    <option value="Tarde">Tarde</option>
-                                    <option value="Inasistencia">Inasistencia</option>
+                                {{student.givenName}}
+                            </div>
+                            <div style="float: left; width: 30%;">
+                                Nota
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let attendances of groupAttendances'>
+                    <td>{{attendances.fecha | date: 'dd/MM/yyyy'}}</td>
+                    <td class="student" *ngFor='let attendance of attendances.listStudent; let i = index'>
+                        <div class="row px-3">
+                            <div style="float: left; width: 70%">
+                                <select class="comboBox" disabled>
+                                    <option value="Presente">{{attendance.attendanceStatus | attendanceStatus}}</option>
                                 </select>
                             </div>
-                            <div class="input-group" style="float: left; width: 30%">
-                                <input type="number" class="form-control" formControlName="grade" placeholder="Nota"
-                                    class="notaSemanal" />
+                            <div style="float: left; width: 30%;">
+
+                                {{attendance.attendanceGrade}}
                             </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="!viewNewAttendance && isAdmin">
+                    <button class="btn btn-newAttendance" (click)="createNewAttendance()">
+                        <fa-icon [icon]="faPlus" class="icon-size"></fa-icon> Crear nueva asistencia
+                    </button>
+                </tr>
+                <tr *ngIf="viewNewAttendance && isAdmin" class="pt-2">
+                    <td>{{ date | date: 'dd/MM/yyyy'}}</td>
+                    <td class="student" *ngFor='let student of company?.members'>
+                        <div class="row px-3">
+                            <form [formGroup]="attendanceEditorForm" (ngSubmit)="addAttendance(student)">
+                                <div style="float: left; width: 70%;">
+                                    <select class="comboBox" formControlName="status">
+                                        <option value="Presente">Presente</option>
+                                        <option value="Tarde">Tarde</option>
+                                        <option value="Inasistencia">Inasistencia</option>
+                                    </select>
+                                </div>
+                                <div class="input-group" style="float: left; width: 30%">
+                                    <input type="number" class="form-control" formControlName="grade" placeholder="Nota"
+                                        class="notaSemanal" />
+                                </div>
 
-                            <div style="float: left; width: auto;">
-                                <button type="submit" class="submit save-attendance">
-                                    <fa-icon [icon]="faSave" class="icon-size"></fa-icon>
-                                </button>
+                                <div style="float: left; width: auto;">
+                                    <button type="submit" class="submit save-attendance">
+                                        <fa-icon [icon]="faSave" class="icon-size"></fa-icon>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="total">Total</td>
+                    <td class="student" *ngFor='let student of company?.members' style="vertical-align: middle;">
+                        <div class="row px-3">
+                            <div style="float: left; width: 70%;">
+                                <p>Presente: {{student.gradeAverage?.presentes}}</p><br>
+                                <p>Tarde: {{student.gradeAverage?.tardes}}</p><br>
+                                <p>Inasistencia: {{student.gradeAverage?.inasistencias}}</p><br>
                             </div>
-                        </form>
-                    </div>
-                </td>
-                <td><a class="view" (click)="open(null)">Visualizar</a></td>
-            </tr>
-            <tr>
-                <td class="total">Total</td>
-                <td class="student" *ngFor='let student of company?.members' style="vertical-align: middle;">
-                    <div class="row px-3">
-                        <div style="float: left; width: 70%;">
-                            <p>Presente: {{student.gradeAverage?.presentes}}</p><br>
-                            <p>Tarde: {{student.gradeAverage?.tardes}}</p><br>
-                            <p>Inasistencia: {{student.gradeAverage?.inasistencias}}</p><br>
+                            <div style="float: left; width: 30%;">
+                                <input placeholder="Nota" class="notaSemanal" disabled
+                                    value="{{student.gradeAverage?.gradeAverage}}" />
+                            </div>
                         </div>
-                        <div style="float: left; width: 30%;">
-                            <input placeholder="Nota" class="notaSemanal" disabled value="{{student.gradeAverage?.gradeAverage}}" />
-                        </div>
-                    </div>
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table class="table-sec">
+                    </td>
+                </tr>
+            </tbody>
+        </table>     
+    </div>
+    <div class="col-md-2">
+        <table class="table" style="height: 300px;">
+            <thead class="head-table">
+                <tr>
+                    <th>Anotación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let calendar of calendars'>
+                    <td><a class="view" (click)="open(calendar.dayDate)">{{calendar.dayDate | date: 'dd/MM/yyyy'}}</a></td>
+                </tr>
+                <tr *ngIf="!viewNewAttendance && isAdmin">
+                    <button class="btn btn-newAttendance" (click)="createNewCalendar()">
+                        <fa-icon [icon]="faPlus" class="icon-size"></fa-icon>Nueva Anotación
+                    </button>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div>
+<div class="general row" *ngIf="show">
+    <table class="table-sec" style="height: 200px;">
         <thead class="head-table">
             <tr>
                 <th class="th-normal"></th>
@@ -102,7 +122,9 @@
                         <form [formGroup]="finalGradeForm" (ngSubmit)="updateFinalGrade(student)">
                             <div style="float: left; width: 150px;">
                                 <p>{{student.finalGrade?.grade}}</p>
-                                <input *ngIf="isAdmin" style="background-color: #D8D8D8;" type="text" class="form-control" placeholder="Nota Final" formControlName="finalGrade" [readonly]="!isAdmin"/>                               
+                                <input *ngIf="isAdmin" style="background-color: #D8D8D8;" type="text"
+                                    class="form-control" placeholder="Nota Final" formControlName="finalGrade"
+                                    [readonly]="!isAdmin" />
                             </div>
                             <div style="float: left; width: auto; font-size:2.4rem" *ngIf="isAdmin">
                                 <button type="submit" class="submit save-attendance">
@@ -116,7 +138,6 @@
 
         </tbody>
     </table>
-
 </div>
 <ngx-spinner bdColor="rgba(2,117,216,0.4)" size="large" color="#0275d8" type="ball-clip-rotate-pulse"
     [fullScreen]="true">

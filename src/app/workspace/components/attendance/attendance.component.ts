@@ -31,6 +31,7 @@ export class AttendanceComponent implements OnInit {
   public attendances: Attendance[] = [];
   public gradeAverages: GradeAverage[] = [];
   public finalGrades: FinalGrade[] = [];
+  public calendars: Calendar[] = [];
   public modalOptions: NgbModalOptions;
   faSave = faSave;
   date;
@@ -50,7 +51,7 @@ export class AttendanceComponent implements OnInit {
     private finalGradeService: FinalGradeService,
     private calendarService: CalendarService,    
     private auth: AuthService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.date = new Date();        
@@ -66,6 +67,7 @@ export class AttendanceComponent implements OnInit {
       if (response) {
         if (this.company !== null) {
           this.listAtenances();
+          this.listCalendars();
         }
       }
     });
@@ -83,6 +85,14 @@ export class AttendanceComponent implements OnInit {
   buidFormFinalGrade() {
     this.finalGradeForm = this.formBuilder.group({
       finalGrade: ['Nota final']
+    });
+  }
+
+  listCalendars(){
+    this.spinner.show();
+    this.calendarService.listCaledarByCompany(this.company.shortName).subscribe(calendars=>{
+      this.calendars = calendars;
+      this.spinner.hide();
     });
   }
 
@@ -129,8 +139,10 @@ export class AttendanceComponent implements OnInit {
   }
 
   createNewAttendance() {
-    this.spinner.show();
     this.viewNewAttendance = true;
+  }
+
+  createNewCalendar(){
     var calendar = new Calendar();
     var attendanceDate = this.calendar.getToday()
     calendar.companyName = this.company.shortName;
@@ -138,12 +150,12 @@ export class AttendanceComponent implements OnInit {
     calendar.dayObservation = "Escriba aqui";
     calendar.dayDescription = "Escriba aqui";
     this.calendarService.addCalendar(calendar).subscribe(()=>{
+      this.listCalendars();
       this.spinner.hide();
     },error=>{
       alert(error.error.error.message);
       this.spinner.hide();
-    }
-    );
+    });
   }
 
   addAttendance(student) {
@@ -154,6 +166,9 @@ export class AttendanceComponent implements OnInit {
     attendance.attendanceStatus = attendance.status == 'Presente' ? 1 : attendance.status == 'Tarde' ? 2 : 3;
     this.attendanceService.addAttendance(attendance, student).subscribe(() => {
       alert("Se guardo la asistencia de: " + student.givenName)
+    },error=>{
+      alert(error.error.error.message);
+      this.spinner.hide();
     });
 
   }

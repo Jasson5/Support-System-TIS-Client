@@ -18,6 +18,11 @@ export class CalendarDatastoreService {
     return this.http.get<Calendar>(this.ROOT_URL + companyName + '/' + date);
   }
 
+  
+  listBycompany(companyName) {
+    return this.http.get<Calendar[]>(this.ROOT_URL + companyName);
+  }
+
   update(calendar: Calendar) {
     return this.http.patch<Calendar>(this.ROOT_URL + calendar.id, calendar);
   }

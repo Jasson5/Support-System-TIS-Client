@@ -29,4 +29,8 @@ export class CalendarService {
   public listCaledar(companyName,date) {
     return this.calendarDatastoreService.list(companyName,date);
   }
+
+  public listCaledarByCompany(companyName) {
+    return this.calendarDatastoreService.listBycompany(companyName);
+  }
 }
