@@ -131,11 +131,13 @@ export class AddCompanyComponent implements OnInit {
           error => {
             this.spinner.hide();
             alert(error.error.error.message)
+            location.reload();
           });
       })
     }else {
       alert("El minimo de usuarios es: " + this.offer.minUsers );
       this.spinner.hide();
+      location.reload();
     }
   }
 

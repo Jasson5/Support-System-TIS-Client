@@ -25,7 +25,7 @@ export class SemesterDatastoreService {
   }
 
   FindByCode(code){
-    return this.http.get<Semester[]>(this.ROOT_URL+ '/' + code);
+    return this.http.get<Semester>(this.ROOT_URL+ '/' + code);
   }
 
   listByUserId(userId) {    

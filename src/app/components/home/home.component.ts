@@ -6,7 +6,9 @@ import { AuthService } from 'src/app/authentication/services/auth.service';
 import { Announcement } from 'src/app/models/announcement';
 import { HomeInformarion } from 'src/app/models/home-information';
 import { Offer } from 'src/app/models/offer';
+import { Semester } from 'src/app/models/semester';
 import { OfferService } from 'src/app/offer/services/offer.service';
+import { SemesterService } from 'src/app/semester/services/semester.service';
 
 @Component({
   selector: 'app-home',
@@ -25,12 +27,15 @@ export class HomeComponent implements OnInit {
   public announcements: Announcement[] = [];
   public homeInformarions: HomeInformarion[] = [];
   public autor;
+  public semesterNames;
+  public semester: Semester;
 
   constructor(
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private auth: AuthService,
     private announcementService: AnnouncementService,
+    private semesterService: SemesterService,
     private offerService: OfferService
   ) { }
 
@@ -39,7 +44,11 @@ export class HomeComponent implements OnInit {
     this.autor = this.auth.getUsername();
     this.route.params.subscribe(params => {
       this.spinner.show();
+      this.semesterService.FindSemesterByCode(params.code).subscribe(semester=>{
+        this.semesterNames = semester.name;
+      });
       this.listHomeInformation(params.code);
+
     });
   }
 
