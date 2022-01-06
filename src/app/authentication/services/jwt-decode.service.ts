@@ -8,6 +8,7 @@ export class JwtDecodeService {
 
   constructor() { }
 
+  //Devuelve el token decoficiado
   public decodeToken(token: string) {
     return jwt_decode(token);
   }

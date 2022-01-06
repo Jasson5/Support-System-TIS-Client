@@ -17,11 +17,13 @@ export class AuthService {
     private jwtDecodeService: JwtDecodeService
   ) { }
 
+  //Verifica si existe algun token
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return token != null;
   }
 
+  //Envia la cuenta del usuario para el inicio de sesion
   login(username: string, password: string) {
     var user = new User();
 
@@ -35,6 +37,7 @@ export class AuthService {
 
     const reqHeader = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
+    //Guarda en el LocalStorage los datos del Usuario
     return this.http.post<any>(environment.BACK_END_HOST + 'users/authenticate', user, reqHeader)
       .pipe(
         map(user => {
@@ -50,22 +53,27 @@ export class AuthService {
       );
   }
 
+  //Obtiene el token
   getToken() {
     return localStorage.getItem('token');
   }
 
+  //Obtiene el nombre del Usuario
   getUsername() {
     return localStorage.getItem('username');
   }
 
+  //Obtiene el id del Usuario
   getUserId() {
     return localStorage.getItem('userid');
   }
 
+  //Obtiene el codigo de Semestre
   getSemester() {
     return localStorage.getItem('semesterCode');
   }
 
+  //Obtiene todos los roles 
   getRoles() {
     var roles = localStorage.getItem('roles');
     if (roles) {
@@ -76,6 +84,7 @@ export class AuthService {
     }
   }
 
+  //Verifica si el token ya expiro
   tokenHasExpired() {
     var convertDate = parseInt(localStorage.getItem('expires')) * 1000;
     var expireDate = new Date(convertDate);
@@ -84,6 +93,7 @@ export class AuthService {
     return currentDate > expireDate;
   }
 
+  //Cierra sesion y elimina los datos del Local Storage
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('username');

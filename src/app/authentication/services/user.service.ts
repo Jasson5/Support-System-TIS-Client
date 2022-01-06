@@ -12,6 +12,7 @@ export class UserService {
     private userDatastoreService: UserDatastoreService
   ) { }
 
+  //Esta clase llama a los metodos de userDatastoreService
    public findById(id) {
      return this.userDatastoreService.getUserById(id);
    }

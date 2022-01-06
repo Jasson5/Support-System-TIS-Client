@@ -27,6 +27,7 @@ export class RegisterUserComponent implements OnInit {
 
   }
 
+  //Inicializa el formulario de registro de usuario con sus respectivas validaciones
   private buildForm() {
     this.sendRegisterForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -39,12 +40,14 @@ export class RegisterUserComponent implements OnInit {
   }
 
 
+  //Envia el formulario de registro a la base de datos
   register() {    
     this.spinner.show();
     var user = this.sendRegisterForm.value;
     this.userService.RegisterUser(user).subscribe(() => {
       this.auth.login(user.email, user.password).subscribe(
         () => {
+          //En caso de ser exitoso, redirige a la vista de Semestres
           this.router.navigate(['/semester-board']).finally(() => {
             this.spinner.hide();
             location.reload();
@@ -52,12 +55,14 @@ export class RegisterUserComponent implements OnInit {
 
         });
     },
+    //En caso de algun error, mostrara una alerta
       error => {
         this.spinner.hide();
         alert(error.error.error.message);
       });
   }
 
+  //Verifica y compara los campos de contraseña y confirmar contraseña
   passwordMatchValidator(password: string, confirmPassword: string) {
     return (formGroup: FormGroup) => {
       const passwordControl = formGroup.controls[password];
@@ -82,22 +87,27 @@ export class RegisterUserComponent implements OnInit {
     };
   }
 
+  //Obtiene el nombre del Usuario
   get name() {
     return this.sendRegisterForm.get('name');
   }
 
+  //Obtiene el apellido del Usuario
   get lastName() {
     return this.sendRegisterForm.get('lastName');
   }
 
+  //Obtiene el correo del Usuario
   get email() {
     return this.sendRegisterForm.get('email');
   }
 
+  //Obtiene la contraseña del Usuario
   get password() {
     return this.sendRegisterForm.get('password');
   }
 
+  //Obtiene la confirmacion de contraseña del Usuario
   get confirmPassword() {
     return this.sendRegisterForm.get('confirmPassword');
   }

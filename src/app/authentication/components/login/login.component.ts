@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     
   }
 
+  //Incializa el formulario de ingreso al sistema con sus respectivas validaciones
   private buildForm() {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(100)]],
@@ -37,17 +38,21 @@ export class LoginComponent implements OnInit {
     this.usernameField.nativeElement.focus();
   }
 
+  //Se ingresa al sistema
   login() {
     this.spinner.show();
     var login = this.loginForm.value;
 
+    //Verifica si los datos son correctos
     this.auth.login(login.username, login.password).subscribe(
       (login) => {
+        //Redirige a la vista de Semestres
         this.router.navigate(['/semester-board']).then(() => {
         });
         this.spinner.hide();
       },
       (error) => {
+        //Nombre de usuario o contraseña incorrecta.
         this.spinner.hide();
         alert(error.error.error.message);
       }
@@ -63,10 +68,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //Obtiene el nombre de usuario
   get username() {
     return this.loginForm.get('username');
   }
 
+  //Obtiene la contraseña
   get password() {
     return this.loginForm.get('password');
   }

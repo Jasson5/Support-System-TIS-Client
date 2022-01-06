@@ -9,6 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(private auth: AuthService, private router: Router) { }
 
+    //Este metodo se encarga de verificar que el token existe y aun no haya expirado
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const authToken = this.auth.getToken();
         if (authToken != null) {
