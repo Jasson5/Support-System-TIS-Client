@@ -19,6 +19,7 @@ export class ViewCompaniesComponent implements OnInit {
   constructor(private companyService: CompanyService,
     private modalService: NgbModal,) { }
 
+  // Obtiene la lista de compañias
   ngOnInit(): void {
     this.modalOptions = {
       backdrop: 'static',
@@ -31,6 +32,8 @@ export class ViewCompaniesComponent implements OnInit {
       console.log(this.companies)
     });
   }
+
+  //Muestra los detalles de la compañia
   viewCOmpanyDetail(company){    
     this.modalOptions.size = 'md';
     const modalRef = this.modalService.open(CompanyDetailModalComponent, this.modalOptions);

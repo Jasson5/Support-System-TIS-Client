@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
 export class PdfService {
 
   constructor() { }
-
   public Open(pdf) {
+    //Abre el pdf en una nueva pestaña del navegador
     if (environment.SERVERLESS_DEPLOY) {
       let reader = new FileReader();
       reader.readAsText(pdf);

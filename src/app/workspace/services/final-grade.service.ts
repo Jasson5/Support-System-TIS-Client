@@ -5,6 +5,8 @@ import { FinalGradeDatastoreService } from './final-grade-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase hace uso de finalGradeDatastoreService
 export class FinalGradeService {
 
   constructor(private finalGradeDatastoreService: FinalGradeDatastoreService) { }

@@ -19,6 +19,7 @@ export class AppComponent {
     });
   }
 
+  //Compara la ruta actual con las posteriormente descritas para ocultar o mostrar el Header
   isLoginComp() {
     var homeRoute;
     var route = this.router.url;

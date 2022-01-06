@@ -29,10 +29,12 @@ export class WorkspaceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //Se guarda en la variable isAdmin si el usuario es Administrador un valor Booleano
     this.isAdmin = this.auth.getRoles().includes('Admin');
     this.listCompanies();
   }
 
+  //Se obtienen las compañias correspondientes al semestre
   listCompanies() {
     if (this.isAdmin) {
       this.companyService.findCompaniesBySemester(this.auth.getSemester()).subscribe((company) => {

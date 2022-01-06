@@ -5,6 +5,8 @@ import { SemesterDatastoreService } from './semester-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase hace uso de SemesterDatastoreService
 export class SemesterService {
 
   constructor(public semesterDatastoreService: SemesterDatastoreService) { }

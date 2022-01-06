@@ -9,13 +9,16 @@ import { environment } from 'src/environments/environment';
 })
 export class AnnouncementDatastoreService {
 
+  //Se define la ruta del EndPoint
   readonly ROOT_URL = `${environment.BACK_END_HOST}announcement/`;
   constructor(private http: HttpClient) { }
 
+  //Se registra un nuevo anuncio
   add(announcement: Announcement) {
     return this.http.post<Offer>(this.ROOT_URL, announcement);
   }
 
+  //Obtiene una lista de anuncios por semestre
   list(code) {
     return this.http.get<Announcement[]>(this.ROOT_URL + code);
   }

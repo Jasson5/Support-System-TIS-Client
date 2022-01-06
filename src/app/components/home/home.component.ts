@@ -17,6 +17,7 @@ import { SemesterService } from 'src/app/semester/services/semester.service';
 })
 export class HomeComponent implements OnInit {
 
+
   public viewButonForOptions = true;
   public viewOptions = false;
   public viewAnnouncements = false;
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   public semesterNames;
   public semester: Semester;
 
+
   constructor(
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
@@ -39,9 +41,12 @@ export class HomeComponent implements OnInit {
     private offerService: OfferService
   ) { }
 
+
   ngOnInit(): void {
+    //Se habilita la opcion de anunciar algo con la clase para el usuario administrador
     this.viewButonForOptions = this.auth.getRoles().includes('Admin');
     this.autor = this.auth.getUsername();
+    //Muestra el spinner mientras obtiene la informacion de publicaciones del semestre seleccionado
     this.route.params.subscribe(params => {
       this.spinner.show();
       this.semesterService.FindSemesterByCode(params.code).subscribe(semester=>{
@@ -52,10 +57,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //Se abre una nueva pestaña para visualizar el archivo subido
   goToLink(url: string) {
     window.open(url, "_blank");
   }
 
+  //Recupera la informacion de las convocatorias y de los anuncios publicados
   listHomeInformation(code) {
     this.spinner.show();
     this.offerService.listOffers(code).subscribe(offers => {
@@ -86,6 +93,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //Verifica el estado de la variable para mostrar u ocultar la vista de opciones de publicacion
   changeViewOptions() {
     if (this.viewOptions == false) {
       this.viewOptions = true;
@@ -96,11 +104,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //Obtiene el estado de las opciones seleccionadas, ya sea una convocatoria o un anuncio
   onItemChange(viewAnnouncementsStatus, viewAdvertisementsStatus) {
     this.AnnouncementsStatus = viewAnnouncementsStatus;
     this.AdvertisementsStatus = viewAdvertisementsStatus;
   }
 
+  //Verifica el estado de las variables para mostrar u ocultar el formulario de las convocatorias oo anuncios
   changeViewAnnouncementssOrAdvertisements() {
     if (this.AnnouncementsStatus == true) {
       this.viewAnnouncements = true;
@@ -114,11 +124,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //Actualiza los valores de variables que nos ayudan a cambiar la vista de conovocatorias
   cancelAnnouncement() {
     this.viewAnnouncements = false;
     this.viewOptions = true;
   }
 
+  //Actualiza los valores de variables que nos ayudan a cambiar la vista de anuncios
   cancelAdvertisement() {
     this.viewAdvertisements = false;
     this.viewOptions = true;

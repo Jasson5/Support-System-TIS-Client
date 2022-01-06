@@ -5,6 +5,8 @@ import { CompanyDatastoreService } from './company-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase llama a los metodos de companyDatastoreService
 export class CompanyService {
 
   constructor(public companyDatastoreService: CompanyDatastoreService) { }

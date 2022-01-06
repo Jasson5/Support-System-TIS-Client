@@ -10,6 +10,7 @@ export class UploadService {
 
   constructor() { }
 
+  //Permite actualizar el archivo
   uploadFile(file, folderName) {
     const contentType = file.type;
     const spacesEndPoint = environment.S3_ENDPOINT;
@@ -33,6 +34,7 @@ export class UploadService {
     return bucket.upload(params).promise();
   }
 
+  //Permite eliminar el archivo actual
   deleteFile(fileName: string, folderName: string) {
     var file_name = fileName.split('/').reverse();
 

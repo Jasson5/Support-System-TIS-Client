@@ -11,6 +11,7 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .then(ref => {
     // Ensure Angular destroys itself on hot reloads.
+    // Asegúrese de que Angular se destruya a sí mismo en recargas en caliente
     if (window['ngRef']) {
       window['ngRef'].destroy();
     }

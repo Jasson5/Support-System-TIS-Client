@@ -19,12 +19,14 @@ export class CalendarComponent implements OnInit {
     private formBuilder: FormBuilder,
     private calendarService: CalendarService) { }
 
+  //Llama a los metodos respectivos
   ngOnInit(): void {
     console.log(this.data);
     this.buildForm();
     this.buildFormToEdit();
   }
 
+  //Inicializa el formulario de anotaciones
   buildForm() {
     this.calendarEditorForm = this.formBuilder.group({
       description: [''],
@@ -32,6 +34,7 @@ export class CalendarComponent implements OnInit {
     });
   }
 
+  //Obtiene las ultimas anotaciones guardadas anteriormente
   private buildFormToEdit() {
     this.calendarService.listCaledar(this.data.companyName, this.data.date).subscribe(calendar => {
       this.calendarToEdit = calendar;
@@ -42,6 +45,7 @@ export class CalendarComponent implements OnInit {
     });
   }
 
+  //Guarda los cambios de las anotaciones
   saveChanges(){
     var calendar = this.calendarEditorForm.value;
     this.calendarService.updateCalendar(this.calendarToEdit,calendar).subscribe(()=>{
@@ -49,10 +53,12 @@ export class CalendarComponent implements OnInit {
     });
   }
   
+  //Obtiene el campo de Lo que se reviso
   get description() {
     return this.calendarEditorForm.get('description');
   }
-  
+
+  //Obtiene el campo de Lo que se revisara
   get observation() {
     return this.calendarEditorForm.get('observation');
   }

@@ -40,6 +40,7 @@ export class AnnouncementEditorComponent implements OnInit {
   ) {
   }
 
+  //Obtiene le codigo de semestre
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.semesterCode = params.code
@@ -47,6 +48,7 @@ export class AnnouncementEditorComponent implements OnInit {
     this.buildFormAnnouncement();
   }
 
+  //Inicializa el formulario de un anuncio con sus respectivas validaciones
   buildFormAnnouncement() {
     this.announcementEditorForm = this.formBuilder.group({
       description: ['', [Validators.required, Validators.maxLength(500)]],
@@ -54,10 +56,13 @@ export class AnnouncementEditorComponent implements OnInit {
     });
   }
 
+  //Obtiene los datos de un anuncio en una variable
   AddAnnouncement() {
     this.spinner.show();
     var announcement = this.announcementEditorForm.value;
     var component = this;
+
+    //En caso de que se haya subido un archivo
     if (this.file != undefined) {
       this.uploadService.uploadFile(this.file, this.folderName)
         .then(function (data) {
@@ -68,11 +73,13 @@ export class AnnouncementEditorComponent implements OnInit {
           console.log('There was an error uploading your file: ', error);
           component.spinner.hide();
         });
+    //En caso de que no se haya subido un archivo
     }else{
       this.sendAnnouncementData(announcement);
     }
   }
 
+  //Envia el anuncio a la base de datos
   sendAnnouncementData(announcement) {
     this.semesterService.FindSemesterByCode(this.semesterCode).subscribe(semester => {
       announcement.semester = semester;
@@ -83,10 +90,12 @@ export class AnnouncementEditorComponent implements OnInit {
     });
   }
 
+  //Recarga la pagina
   cancel() {
     location.reload();
   }
 
+  //Se permite cambiar el archivo subido
   onFileChange(event) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -111,11 +120,13 @@ export class AnnouncementEditorComponent implements OnInit {
     }
   }
 
+  //Elimina un archivo subido
   removeFile() {
     this.file = null;
     this.thumbnailData = null;
   }
 
+  //Obtiene la descripcion del anuncio
   get description() {
     return this.announcementEditorForm.get('description');
 

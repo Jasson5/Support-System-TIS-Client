@@ -26,6 +26,7 @@ export class ViewPendingCompaniesComponent implements OnInit {
     private modalService: NgbModal,
     ) { }
 
+  // Obtiene la lista de compañias
   ngOnInit(): void {
     this.modalOptions = {
       backdrop: 'static',
@@ -40,6 +41,7 @@ export class ViewPendingCompaniesComponent implements OnInit {
     });
   }
 
+  //Elimina la comnpañia al rechazar la solicitud
   deleteCompany(company): void {    
     this.modalOptions.size = 'sm';
     const modalRef = this.modalService.open(ConfirmationModalComponent, this.modalOptions);
@@ -66,6 +68,7 @@ export class ViewPendingCompaniesComponent implements OnInit {
     });
   }
 
+  //Acepta la solicitud de una compañia
   approveCompany(company){    
     this.modalOptions.size = 'sm';
     const modalRef = this.modalService.open(ConfirmationModalComponent, this.modalOptions);
@@ -93,6 +96,7 @@ export class ViewPendingCompaniesComponent implements OnInit {
     });
   }
 
+  //Muestra los detalles de la compañia
   viewCOmpanyDetail(company){    
     this.modalOptions.size = 'md';
     const modalRef = this.modalService.open(CompanyDetailModalComponent, this.modalOptions);

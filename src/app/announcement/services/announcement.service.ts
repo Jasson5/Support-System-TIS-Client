@@ -6,6 +6,8 @@ import { AnnouncementDatastoreService } from './announcement-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase llama a los metodos de announcementDatastoreService
 export class AnnouncementService {
 
   constructor(private announcementDatastoreService: AnnouncementDatastoreService) { }

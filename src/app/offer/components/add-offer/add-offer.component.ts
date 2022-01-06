@@ -39,6 +39,7 @@ export class AddOfferComponent implements OnInit {
   ) {
   }
 
+  //Obtiene la gestion e inicializa el formulario
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.semesterCode = params.code
@@ -46,6 +47,7 @@ export class AddOfferComponent implements OnInit {
     this.buildFormOffer();
   }
 
+  //Inicializa el formulario de la convocatoria con sus respectivas validaciones
   buildFormOffer() {
     this.offerEditorForm = this.formBuilder.group({
       description: ['', [Validators.required, Validators.maxLength(500)]],
@@ -56,6 +58,7 @@ export class AddOfferComponent implements OnInit {
     });
   }
 
+  //Segun la cantidad de miembros, guarda en una variable los datos
   AddOffer() {
     var offer = this.offerEditorForm.value;
     if(offer.minUsers <= offer.maxUsers) {
@@ -75,6 +78,7 @@ export class AddOfferComponent implements OnInit {
     }    
   }
 
+  //Añade la convocatoria a la base de datos
   sendOfferData(offer) {
     this.semesterService.FindSemesterByCode(this.semesterCode).subscribe(semester => {
       offer.dateEnd = new Date(offer.dateEnd.year, offer.dateEnd.month - 1, offer.dateEnd.day);
@@ -85,10 +89,13 @@ export class AddOfferComponent implements OnInit {
     });
   }
 
+  //Recarga la vista
   cancel() {
     location.reload();
   }
 
+
+  //Se permite cambiar el archivo subido
   onFileChange(event) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -105,7 +112,7 @@ export class AddOfferComponent implements OnInit {
         } else {
           this.imageErrorSize = null;
           this.thumbnailData = event.target.result;
-          // need to run CD since file load runs outside of zone
+          // Necesita ejecutar el CD ya que la carga del archivo se ejecuta fuera de la zona
           this.offerEditorForm.controls['file'].reset();
           this.cd.markForCheck();
         }
@@ -113,6 +120,7 @@ export class AddOfferComponent implements OnInit {
     }
   }
 
+  //Remueve el archivo subido
   removeFile() {
     this.file = null;
     this.thumbnailData = null;

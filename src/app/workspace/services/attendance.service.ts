@@ -5,6 +5,8 @@ import { AttendanceDatastoreService } from './attendance-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase hace uso de attendanceDatastoreService
 export class AttendanceService {
 
   constructor(private attendanceDatastoreService: AttendanceDatastoreService) { }

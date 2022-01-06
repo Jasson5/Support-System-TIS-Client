@@ -13,6 +13,7 @@ export class CompanyDetailModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal) { }
 
+  //Muestra los detalles de una compañia: Semestre y miembros de la misma
   ngOnInit(): void {
     console.log(this.data)
   }

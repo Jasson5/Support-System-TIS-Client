@@ -53,6 +53,7 @@ export class AttendanceComponent implements OnInit {
     private auth: AuthService,
   ) {}
 
+  //Se inicializa la vista de Asistencia tanto para el Administrador como para el Estudiante
   ngOnInit(): void {
     this.date = new Date();        
     this.isAdmin = this.auth.getRoles().includes('Admin');
@@ -75,6 +76,7 @@ export class AttendanceComponent implements OnInit {
     this.buidFormFinalGrade();
   }
 
+  //Inicializa el formulario de Asistencias
   buildFormAttendance() {
     this.attendanceEditorForm = this.formBuilder.group({
       status: ['Presente'],
@@ -82,12 +84,14 @@ export class AttendanceComponent implements OnInit {
     });
   }
 
+  //Inicializa el formulario de Notas finales
   buidFormFinalGrade() {
     this.finalGradeForm = this.formBuilder.group({
       finalGrade: ['Nota final']
     });
   }
 
+  //Muuestra la lista de Anotaciones existentes segun su fecha
   listCalendars(){
     this.spinner.show();
     this.calendarService.listCaledarByCompany(this.company.shortName).subscribe(calendars=>{
@@ -96,6 +100,7 @@ export class AttendanceComponent implements OnInit {
     });
   }
 
+  //Obtiene la lista de estudiantes con sus asistencias, notas semanales y fecha
   listAtenances() {
     this.spinner.show();
     this.attendanceService.listAttendancesByCompanyName(this.company.shortName).subscribe(attendances => {
@@ -118,6 +123,7 @@ export class AttendanceComponent implements OnInit {
     });
   }
 
+  //Agrupa por fecha a los estudiantes con sus asistencias y notas semanales
   agrupar(lista: Array<any>): Array<any> {
     var listaFechas = new Array<string>()
     for (let asistencia of lista) {
@@ -138,10 +144,12 @@ export class AttendanceComponent implements OnInit {
     return listaFinal
   }
 
+  //Crea una nueva fila de asistencias en la tabla
   createNewAttendance() {
     this.viewNewAttendance = true;
   }
 
+  //Crea una nueva fila de anotaciones en la tabla
   createNewCalendar(){
     var calendar = new Calendar();
     var attendanceDate = this.calendar.getToday()
@@ -158,6 +166,7 @@ export class AttendanceComponent implements OnInit {
     });
   }
 
+  //Añade un nuevo registro de asistencia y nota semanal para un estudiante
   addAttendance(student) {
     var attendance = this.attendanceEditorForm.value;
     attendance.companyName = this.company.shortName;
@@ -173,6 +182,7 @@ export class AttendanceComponent implements OnInit {
 
   }
 
+  //Actualiza la nota final de un estudiante
   updateFinalGrade(student) {
     this.spinner.show();
     var finalGrade = this.finalGradeForm.value;
@@ -183,7 +193,7 @@ export class AttendanceComponent implements OnInit {
     })
   }
 
-  
+  //Muestra un modal con los campos de Lo que se reviso y Lo que se revisara
   open(date){
     var attendanceDate = this.calendar.getToday()
     date== null ?  new Date(attendanceDate.year, attendanceDate.month - 1, attendanceDate.day): date;
@@ -195,14 +205,17 @@ export class AttendanceComponent implements OnInit {
     };
   }
 
+  //Obtiene el estado actual de la asistencia
   get status() {
     return this.attendanceEditorForm.get('status');
   }
 
+  //Obtiene el estado actual de la nota semanal
   get grade() {
     return this.attendanceEditorForm.get('grade');
   }
 
+  //Obtiene el estado actual de nota final
   get finalGrade() {
     return this.finalGradeForm.get('finalGrade');
   }

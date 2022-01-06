@@ -5,6 +5,8 @@ import { CalendarDatastoreService } from './calendar-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase hace uso de calendarDatastoreService
 export class CalendarService {
 
   constructor(private calendarDatastoreService: CalendarDatastoreService) { }

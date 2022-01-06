@@ -33,12 +33,15 @@ export class SemestersComponent implements OnInit {
     private auth: AuthService
   ) { }
 
+  //Se habilita la opcion de Nueva Clase para el Administrador 
+  //En caso de ser Estudiante se habilita la opcion de Unirse
   ngOnInit(): void {
     this.isAdmin = this.auth.getRoles().includes('Admin');
     this.textButton = this.isAdmin ? "Nueva Clase" : "Unirse";
     this.listSemesters();
   }
 
+  //Se despliega un modal dependiendo del tipo de usuario
   open(content) {
     this.getRandomCode();
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -53,6 +56,7 @@ export class SemestersComponent implements OnInit {
     });
   }
 
+  //Cierra el modal ya sea presionado ESC o haciendo click fuera del modal
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -63,6 +67,7 @@ export class SemestersComponent implements OnInit {
     }
   }
 
+  //Obtiene un codigo randomico de 8 caracteres
   getRandomCode() {
     this.codeClass = "";
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -73,6 +78,7 @@ export class SemestersComponent implements OnInit {
     return this.codeClass;
   }
 
+  //Envia el nuevo semestre al backend 
   addSemester() {
     this.spinner.show();
     this.semesterService.addSemester(this.className, this.codeClass, SemesterStatusEnum.OPEN).subscribe(() => {
@@ -80,6 +86,7 @@ export class SemestersComponent implements OnInit {
     });
   }
 
+  //Permite al usuario unirse a una clase con el codigo respectivo
   joinToClass() {
     this.spinner.show();
     var userId = this.auth.getUserId();
@@ -89,6 +96,7 @@ export class SemestersComponent implements OnInit {
     });
   }
 
+  //Muestra la lista de semestres existentes en la base de datos
   listSemesters() {
     this.spinner.show();
     this.activeSemesters = [];
@@ -120,6 +128,7 @@ export class SemestersComponent implements OnInit {
     }
   }
 
+  //Ingresa al semestre escogido
   enterToSemester(code) {    
     localStorage.setItem('semesterCode', code);
     this.router.navigate(['/home', code]);

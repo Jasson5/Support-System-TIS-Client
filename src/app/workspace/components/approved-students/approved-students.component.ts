@@ -14,6 +14,7 @@ export class ApprovedStudentsComponent implements OnInit {
   constructor(private finalGradeService: FinalGradeService,
     private auth: AuthService) { }
 
+  //Obtiene la lista de los estudiantes con su nota final
   ngOnInit(): void {
     this.finalGradeService.listFinalGradeBySemester(this.auth.getSemester()).subscribe(finalGrade => {
       this.finalGrades = finalGrade;

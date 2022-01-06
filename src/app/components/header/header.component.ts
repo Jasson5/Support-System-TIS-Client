@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.auth.getRoles().includes('Admin');
     this.userName = this.auth.getUsername();
+
+    //Se verifica el rol del usuario, ya sea Administrador, Representante o Estudiante, para modificar los botones que muestre el Header
     if(this.auth.getRoles().includes('Admin')){      
       this.userRole = "Administrador";
       this.companyName = "Empresas";
@@ -48,7 +50,8 @@ export class HeaderComponent implements OnInit {
       }      
     }
   }
-  
+
+  //Compara la ruta actual con las posteriormente descritas para ocultar o mostrar el Header
   isInformationRoute() {
     var homeRoute;
     var route = this.router.url;
@@ -60,6 +63,7 @@ export class HeaderComponent implements OnInit {
     return homeRoute;
   }
 
+  //Compara la ruta actual con la posteriormente descrita para ocultar o mostrar el Header
   isNotSemesterBoard() {
     var route = this.router.url;
     if (route == '/semester-board') {
@@ -69,6 +73,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  //Cierra la sesion del usuario actual, redirigiendose a la vista de Login
   logout() {
     this.auth.logout();
     this.router.navigate(['/login']);

@@ -43,6 +43,7 @@ export class AddCompanyComponent implements OnInit {
     private auth: AuthService
   ) { }
 
+  //Obtiene la lista de estudiante segun el semestre que no pertenezcan a una compañia
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.spinner.show();
@@ -62,6 +63,7 @@ export class AddCompanyComponent implements OnInit {
     this.buildForm();
   }
 
+  //Inicializa el formulario con sus respectivas validaciones
   buildForm() {
     this.companyEditorForm = this.formBuilder.group({
       companyShortName: ['', [Validators.required, Validators.maxLength(50)]],
@@ -70,6 +72,7 @@ export class AddCompanyComponent implements OnInit {
     });
   }
 
+  //Filtra la lista de usuarios segun al nombre introducido en el campo de busqueda
   searchUsers(value: string = "") {
     this.spinner.show();
     this.semesterService.listUsersBySemester(value, this.offer.semester.code).subscribe(users => {
@@ -87,6 +90,7 @@ export class AddCompanyComponent implements OnInit {
     });
   }
 
+  // Añade en la lista de miembros al usuario seleccionado
   selectUser(user: User) {
     if (this.usersSelected.length + 1 < this.offer.maxUsers) {
       var index = this.users.indexOf(user);
@@ -102,6 +106,7 @@ export class AddCompanyComponent implements OnInit {
     }
   }
 
+  //Elimina de la lista de miembros al usuario seleccionado
   cancelSelectUser(userSelected: User) {
     var index = this.usersSelected.indexOf(userSelected);
     if (index > -1) {
@@ -110,6 +115,7 @@ export class AddCompanyComponent implements OnInit {
     }
   }
 
+  //Registra una nueva compañia
   addCompany() {
     this.spinner.show();
     var company = this.companyEditorForm.value;
@@ -122,6 +128,7 @@ export class AddCompanyComponent implements OnInit {
       this.myAccount.roles = roles;
       this.usersSelected.push(this.myAccount);
     }
+    //Verifica la cantidad minima de usuarios para una compañia
     if (this.usersSelected.length >= this.offer.minUsers) {
       this.semesterService.FindSemesterByCode(this.offer.semester.code).subscribe(semester => {
         this.companyService.addCompany(company, this.usersSelected, semester).subscribe(() => {
@@ -141,14 +148,15 @@ export class AddCompanyComponent implements OnInit {
     }
   }
 
+  //Obtiene el nombre de corto de la compañia
   get companyShortName() {
     return this.companyEditorForm.get('companyShortName');
   }
-
+  //Obtiene el nombre de largo de la compañia
   get longCompanyName() {
     return this.companyEditorForm.get('longCompanyName');
   }
-
+  //Obtiene el tipo de sociedad de la compañia
   get kindOfSociety() {
     return this.companyEditorForm.get('kindOfSociety');
   }

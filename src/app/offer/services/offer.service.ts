@@ -5,6 +5,8 @@ import { OfferDatastoreService } from './offer-datastore.service';
 @Injectable({
   providedIn: 'root'
 })
+
+//Esta clase llama a los metodos de OfferDataStore
 export class OfferService {
   constructor(private offerDatastoreService: OfferDatastoreService) { }
 

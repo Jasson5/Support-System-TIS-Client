@@ -12,6 +12,7 @@ export class LanfingPageComponent implements OnInit{
    }
   
 
+   //Escoge la imagen de fondo segun la resolucion de la pantalla del usuario
   ngOnInit(): void {
     if(screen.width < 1024){
       this.backgorudImage = "../../../assets/images/font-tall.png";
